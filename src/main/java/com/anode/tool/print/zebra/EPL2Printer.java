@@ -1,4 +1,4 @@
-package com.anode.print.zebra;
+package com.anode.tool.print.zebra;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
@@ -6,9 +6,9 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.List;
 
-import com.anode.print.AbstractPrinter;
-import com.anode.print.BarCodePrinter;
-import com.anode.print.PrintServicesException;
+import com.anode.tool.print.AbstractPrinter;
+import com.anode.tool.print.BarCodePrinter;
+import com.anode.tool.print.PrintServicesException;
 
 abstract class EPL2Printer extends AbstractPrinter implements BarCodePrinter {
 

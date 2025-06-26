@@ -1,4 +1,4 @@
-package com.anode.print;
+package com.anode.tool.print;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.anode.print.zebra.TLP3842;
+import com.anode.tool.print.zebra.TLP3842;
 
 public class CommandLinePrint {
 

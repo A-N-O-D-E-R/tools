@@ -1,4 +1,4 @@
-package com.anode.print.zebra;
+package com.anode.tool.print.zebra;
 
 public class TLP3842 extends EPL2Printer {
 

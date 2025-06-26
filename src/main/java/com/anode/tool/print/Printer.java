@@ -1,4 +1,4 @@
-package com.anode.print;
+package com.anode.tool.print;
 
 public interface Printer {
 	public abstract String getName();
