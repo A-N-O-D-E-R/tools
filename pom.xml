@@ -10,6 +10,8 @@
         <jackson.version>2.14.1</jackson.version>
         <spotless.version>2.40.0</spotless.version>
         <maven-embedder-version>3.9.6</maven-embedder-version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
      <dependencies>
