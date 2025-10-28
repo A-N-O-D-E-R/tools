@@ -33,7 +33,7 @@ public class CustomTempClassLoader  extends ClassLoader{
             if (classBytes == null || classBytes.length == 0) {
                 throw new ClassNotFoundException();
             }
-            return defineClass(classBytes, 0, classBytes.length);
+            return defineClass(name, classBytes, 0, classBytes.length);
         }
     
         private byte[] getClassData(File file) {

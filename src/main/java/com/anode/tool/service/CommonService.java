@@ -8,11 +8,11 @@ import java.util.Map;
 
 public interface CommonService {
 
-    public void saveOrUpdate(Object object);
+    public void saveOrUpdate(Serializable id, Object object);
 
-    public void save(Object object);
+    public void save(Serializable id, Object object);
 
-    public void update(Object object);
+    public void update(Serializable id, Object object);
 
     public void saveCollection(Collection objects);
 
