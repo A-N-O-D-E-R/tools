@@ -14,6 +14,13 @@
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
+   <distributionManagement>
+        <repository>
+            <id>b2-releases</id>
+            <name>B2 Maven Repository - Releases</name>
+            <url>b2://A-N-O-D-E-R/maven-releases</url>
+        </repository>
+    </distributionManagement>
      <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -152,4 +159,13 @@
             <scope>test</scope>
         </dependency>
 	 </dependencies>
+     <build>
+        <extensions>
+            <extension>
+                <groupId>com.anode.maven.wagon</groupId>
+                <artifactId>wagon-b2</artifactId>
+                <version>1.0.0</version>
+            </extension>
+        </extensions>
+     </build>
 </project>
