@@ -1,6 +1,5 @@
 package com.anode.tool.event;
 
-import java.io.Externalizable;
 import java.util.Date;
 import java.util.UUID;
 
