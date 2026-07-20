@@ -107,24 +107,17 @@ public interface CommonService {
      * it will be updated; otherwise, a new object will be created. This is the most commonly
      * used persistence method in the workflow engine.
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Save or update a workflow instance
      * <pre>{@code
      * WorkflowInfo workflowInfo = new WorkflowInfo();
      * workflowInfo.setCaseId("ORDER-123");
      * workflowInfo.setStatus(WorkflowStatus.IN_PROGRESS);
-     *
-     * // First call saves new instance
-     * commonService.saveOrUpdate("ORDER-123", workflowInfo);
-     *
-     * // Subsequent calls update existing instance
-     * workflowInfo.setStatus(WorkflowStatus.COMPLETED);
      * commonService.saveOrUpdate("ORDER-123", workflowInfo);
      * }</pre>
      *
      * @param id the unique identifier for the object; null for new objects with generated IDs
      * @param object the object to persist; must not be null
      * @throws IllegalArgumentException if object is null
-     * @throws PersistenceException if the operation fails
      */
     public void saveOrUpdate(Serializable id, Object object);
 
@@ -135,20 +128,17 @@ public interface CommonService {
      * same ID already exists, the behavior is implementation-dependent (may throw an exception
      * or be silently ignored). For idempotent operations, use {@link #saveOrUpdate} instead.
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Save a new workflow definition
      * <pre>{@code
      * WorkflowDefinition definition = new WorkflowDefinition();
      * definition.setName("orderProcessing");
      * definition.setVersion("1.0");
-     *
      * commonService.save("orderProcessing", definition);
      * }</pre>
      *
      * @param id the unique identifier for the new object; null for auto-generated IDs
      * @param object the object to save; must not be null
      * @throws IllegalArgumentException if object is null
-     * @throws DuplicateKeyException if an object with this ID already exists (implementation-dependent)
-     * @throws PersistenceException if the save operation fails
      */
     public void save(Serializable id, Object object);
 
@@ -159,19 +149,16 @@ public interface CommonService {
      * does not exist, the behavior is implementation-dependent (may throw an exception
      * or create a new object). For idempotent operations, use {@link #saveOrUpdate} instead.
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Update workflow status
      * <pre>{@code
      * WorkflowInfo workflowInfo = commonService.get(WorkflowInfo.class, "ORDER-123");
      * workflowInfo.setPendWorkBasket("APPROVAL_QUEUE");
-     *
      * commonService.update("ORDER-123", workflowInfo);
      * }</pre>
      *
      * @param id the unique identifier of the object to update; must not be null
      * @param object the updated object; must not be null
      * @throws IllegalArgumentException if id or object is null
-     * @throws EntityNotFoundException if no object with this ID exists (implementation-dependent)
-     * @throws PersistenceException if the update operation fails
      */
     public void update(Serializable id, Object object);
 
@@ -182,20 +169,18 @@ public interface CommonService {
      * new entities at once. It may perform significantly better than calling {@link #save}
      * repeatedly due to batching optimizations.
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Save multiple workflow steps
      * <pre>{@code
      * List<Step> steps = Arrays.asList(
      *     new Step("validateOrder", StepType.TASK),
      *     new Step("checkCredit", StepType.TASK),
      *     new Step("approveOrder", StepType.TASK)
      * );
-     *
      * commonService.saveCollection(steps);
      * }</pre>
      *
      * @param objects the collection of objects to save; must not be null or empty
      * @throws IllegalArgumentException if objects is null or empty
-     * @throws PersistenceException if the batch save operation fails
      */
     public void saveCollection(Collection objects);
 
@@ -206,20 +191,18 @@ public interface CommonService {
      * exist or updated if they do. This is the most efficient way to persist multiple objects
      * when you don't know which ones already exist in storage.
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Save or update workflow variables
      * <pre>{@code
      * List<WorkflowVariable> variables = Arrays.asList(
      *     new WorkflowVariable("orderId", "ORD-001"),
      *     new WorkflowVariable("amount", "1500.00"),
      *     new WorkflowVariable("status", "PENDING")
      * );
-     *
      * commonService.saveOrUpdateCollection(variables);
      * }</pre>
      *
      * @param objects the collection of objects to persist; must not be null or empty
      * @throws IllegalArgumentException if objects is null or empty
-     * @throws PersistenceException if the batch operation fails
      */
     public void saveOrUpdateCollection(Collection objects);
 
@@ -230,19 +213,13 @@ public interface CommonService {
      * If the object doesn't exist, the behavior is implementation-dependent (may be silently
      * ignored or throw an exception).
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Delete a workflow instance
      * <pre>{@code
-     * // Delete completed workflow instance
      * commonService.delete("ORDER-123");
-     *
-     * // Verify deletion
-     * WorkflowInfo deleted = commonService.get(WorkflowInfo.class, "ORDER-123");
-     * assert deleted == null;
      * }</pre>
      *
      * @param id the unique identifier of the object to delete; must not be null
      * @throws IllegalArgumentException if id is null
-     * @throws PersistenceException if the delete operation fails
      */
     public void delete(Serializable id);
 
@@ -254,21 +231,9 @@ public interface CommonService {
      * context and can be safely modified without affecting stored state unless explicitly
      * saved.
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Retrieve a workflow instance by case ID
      * <pre>{@code
-     * // Retrieve workflow instance by case ID
      * WorkflowInfo workflowInfo = commonService.get(WorkflowInfo.class, "ORDER-123");
-     *
-     * if (workflowInfo != null) {
-     *     String status = workflowInfo.getStatus();
-     *     WorkflowVariables vars = workflowInfo.getWorkflowVariables();
-     * }
-     *
-     * // Retrieve workflow definition
-     * WorkflowDefinition definition = commonService.get(
-     *     WorkflowDefinition.class,
-     *     "orderProcessing"
-     * );
      * }</pre>
      *
      * @param <T> the type of object to retrieve
@@ -276,7 +241,6 @@ public interface CommonService {
      * @param id the unique identifier of the object; must not be null
      * @return the object with the given ID, or null if not found
      * @throws IllegalArgumentException if objectClass or id is null
-     * @throws PersistenceException if the retrieval operation fails
      */
     public <T> T get(Class<T> objectClass, Serializable id);
 
@@ -287,25 +251,16 @@ public interface CommonService {
      * datasets as it may cause memory issues. For large result sets, consider implementing
      * pagination or streaming APIs in your storage layer.
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Load all workflow definitions
      * <pre>{@code
-     * // Load all workflow definitions
      * List<WorkflowDefinition> allDefinitions =
      *     commonService.getAll(WorkflowDefinition.class);
-     *
-     * for (WorkflowDefinition def : allDefinitions) {
-     *     System.out.println("Workflow: " + def.getName());
-     * }
-     *
-     * // Load all active workflow instances (warning: may be large)
-     * List<WorkflowInfo> allInstances = commonService.getAll(WorkflowInfo.class);
      * }</pre>
      *
      * @param <T> the type of objects to retrieve
      * @param type the class of objects to retrieve; must not be null
      * @return a list of all objects of the given type; empty list if none exist
      * @throws IllegalArgumentException if type is null
-     * @throws PersistenceException if the retrieval operation fails
      */
     public <T> List<T> getAll(Class<T> type);
 
@@ -317,25 +272,13 @@ public interface CommonService {
      * multiple objects match, the behavior is implementation-dependent (may return first
      * match, throw exception, or be undefined).
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Find workflow definition by name
      * <pre>{@code
-     * // Find workflow definition by name (assuming name is unique)
      * WorkflowDefinition definition = commonService.getUniqueItem(
      *     WorkflowDefinition.class,
      *     "name",
      *     "orderProcessing"
      * );
-     *
-     * // Find workflow instance by business key
-     * WorkflowInfo workflowInfo = commonService.getUniqueItem(
-     *     WorkflowInfo.class,
-     *     "businessKey",
-     *     "PO-2024-001"
-     * );
-     *
-     * if (workflowInfo == null) {
-     *     // No workflow found with this business key
-     * }
      * }</pre>
      *
      * @param <T> the type of object to retrieve
@@ -344,8 +287,6 @@ public interface CommonService {
      * @param uniqueKeyValue the value to match; must not be null
      * @return the unique object matching the key-value pair, or null if not found
      * @throws IllegalArgumentException if any parameter is null
-     * @throws NonUniqueResultException if multiple objects match (implementation-dependent)
-     * @throws PersistenceException if the query operation fails
      */
     public <T> T getUniqueItem(Class<T> type, String uniqueKeyName, String uniqueKeyValue);
 
@@ -358,60 +299,16 @@ public interface CommonService {
      * or threads attempt to modify the same object concurrently.
      *
      * <p><b>IMPORTANT:</b> This method MUST be used within a transaction that releases
-     * the lock quickly to avoid blocking other operations and potential deadlocks. The
-     * transaction should be as short as possible, performing only the necessary read-modify-write
-     * operation.
+     * the lock quickly to avoid blocking other operations and potential deadlocks.
      *
-     * <h3>Example Usage</h3>
-     * <pre>{@code
-     * @Transactional
-     * public void incrementWorkflowCounter(String caseId) {
-     *     // Acquire pessimistic lock to prevent concurrent updates
-     *     WorkflowInfo workflowInfo = commonService.getLocked(
-     *         WorkflowInfo.class,
-     *         caseId
-     *     );
-     *
-     *     // Safely modify the object
-     *     int counter = workflowInfo.getRetryCount();
-     *     workflowInfo.setRetryCount(counter + 1);
-     *
-     *     // Update and release lock at transaction commit
-     *     commonService.update(caseId, workflowInfo);
-     * }
-     *
-     * // Example: Prevent double-processing of work items
-     * @Transactional
-     * public boolean claimWorkItem(String workItemId, String userId) {
-     *     WorkItem item = commonService.getLocked(WorkItem.class, workItemId);
-     *
-     *     if (item.getAssignee() != null) {
-     *         return false; // Already claimed
-     *     }
-     *
-     *     item.setAssignee(userId);
-     *     item.setClaimedAt(Instant.now());
-     *     commonService.update(workItemId, item);
-     *     return true;
-     * }
-     * }</pre>
-     *
-     * <h3>Lock Semantics</h3>
-     * <ul>
-     *   <li>Equivalent to SQL {@code SELECT ... FOR UPDATE}</li>
-     *   <li>Other transactions attempting to lock the same row will block</li>
-     *   <li>Lock is held until transaction commits or rolls back</li>
-     *   <li>May cause deadlocks if locks are acquired in inconsistent order</li>
-     * </ul>
+     * <p>Lock semantics: Equivalent to SQL {@code SELECT ... FOR UPDATE}. Lock is held
+     * until transaction commits or rolls back.
      *
      * @param <T> the type of object to retrieve
      * @param objectClass the class of the object to retrieve; must not be null
      * @param id the unique identifier of the object to lock; must not be null
      * @return the locked object, or null if not found
      * @throws IllegalArgumentException if objectClass or id is null
-     * @throws TransactionRequiredException if called outside a transaction context
-     * @throws LockTimeoutException if lock cannot be acquired within timeout period
-     * @throws PersistenceException if the locking operation fails
      */
     public <T> T getLocked(Class<T> objectClass, Serializable id);
 
@@ -423,53 +320,24 @@ public interface CommonService {
      * is NOT equivalent to Java's {@code Object.clone()} - it performs ID substitution while
      * copying the object graph.
      *
-     * <p>Common use cases include:
-     * <ul>
-     *   <li>Creating a new workflow instance from an existing template</li>
-     *   <li>Duplicating a workflow definition with new identifiers</li>
-     *   <li>Making an object transient (detached from persistence) using a {@code TransientIdFactory}</li>
-     *   <li>Copying object graphs while maintaining referential integrity</li>
-     * </ul>
+     * <p>Common use cases include creating a new workflow instance from an existing template,
+     * duplicating a workflow definition with new identifiers, or making an object transient.
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Clone a workflow definition with new IDs
      * <pre>{@code
-     * // Clone a workflow definition with new IDs
      * WorkflowDefinition original = commonService.get(
      *     WorkflowDefinition.class,
      *     "orderProcessing"
      * );
-     *
-     * // Create factory that generates new UUIDs
      * IdFactory uuidFactory = new UUIDIdFactory();
-     *
-     * // Clone with new IDs
      * Map<Serializable, Serializable> idMapping =
      *     commonService.makeClone(original, uuidFactory);
-     *
-     * // idMapping contains: {oldId1 -> newId1, oldId2 -> newId2, ...}
-     * for (Map.Entry<Serializable, Serializable> entry : idMapping.entrySet()) {
-     *     System.out.println("Old ID: " + entry.getKey() +
-     *                       " -> New ID: " + entry.getValue());
-     * }
-     *
-     * // Make object transient (detach from database)
-     * IdFactory transientFactory = new TransientIdFactory();
-     * commonService.makeClone(workflowInfo, transientFactory);
      * }</pre>
-     *
-     * <h3>ID Mapping</h3>
-     * The returned map contains all ID substitutions performed during cloning:
-     * <ul>
-     *   <li>Key: Original identifier</li>
-     *   <li>Value: New identifier assigned by the factory</li>
-     * </ul>
-     * This mapping can be used to update external references or track the cloning operation.
      *
      * @param object the object to clone; must not be null
      * @param idFactory the factory responsible for generating new identifiers; must not be null
      * @return a map where keys are old IDs and values are new IDs assigned during cloning
      * @throws IllegalArgumentException if object or idFactory is null
-     * @throws PersistenceException if the cloning operation fails
      *
      * @see IdFactory
      */
@@ -482,26 +350,16 @@ public interface CommonService {
      * to the provided comparator. This can be useful for finding the oldest record, the
      * lowest priority item, or any other minimum value based on custom comparison logic.
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Find the smallest numeric ID
      * <pre>{@code
-     * // Find the smallest numeric ID
      * Comparator<Serializable> numericComparator =
      *     (id1, id2) -> Integer.compare((Integer) id1, (Integer) id2);
-     *
      * Serializable minId = commonService.getMinimalId(numericComparator);
-     * System.out.println("Smallest ID: " + minId);
-     *
-     * // Find the oldest timestamp-based ID
-     * Comparator<Serializable> timestampComparator =
-     *     (id1, id2) -> Long.compare((Long) id1, (Long) id2);
-     *
-     * Serializable oldestId = commonService.getMinimalId(timestampComparator);
      * }</pre>
      *
      * @param comparator the comparator to determine minimum value; must not be null
      * @return the minimal identifier, or null if no objects exist
      * @throws IllegalArgumentException if comparator is null
-     * @throws PersistenceException if the operation fails
      */
     public Serializable getMinimalId(Comparator<Serializable> comparator);
 
@@ -512,7 +370,7 @@ public interface CommonService {
      * generating sequential identifiers, tracking metrics, or implementing distributed
      * sequences. The counter is automatically created if it doesn't exist, starting from 1.
      *
-     * <h3>Use Cases</h3>
+     * <p>Use cases include:
      * <ul>
      *   <li>Generating sequential case IDs for workflows</li>
      *   <li>Tracking total number of workflow executions</li>
@@ -520,40 +378,18 @@ public interface CommonService {
      *   <li>Counting events or operations</li>
      * </ul>
      *
-     * <h3>Example Usage</h3>
+     * <p>Example: Generate sequential order numbers
      * <pre>{@code
-     * // Generate sequential order numbers
-     * public String createOrderNumber() {
-     *     long sequence = commonService.incrCounter("orderNumber");
-     *     return String.format("ORD-%06d", sequence);
-     * }
-     * // First call:  ORD-000001
-     * // Second call: ORD-000002
-     * // Third call:  ORD-000003
-     *
-     * // Track workflow execution count
-     * public void startWorkflow(String caseId) {
-     *     long executionCount = commonService.incrCounter("totalWorkflows");
-     *     log.info("Starting workflow {} (total executions: {})",
-     *         caseId, executionCount);
-     * }
-     *
-     * // Per-workflow-type counters
-     * public String generateCaseId(String workflowType) {
-     *     String counterKey = "caseId." + workflowType;
-     *     long sequence = commonService.incrCounter(counterKey);
-     *     return workflowType + "-" + sequence;
-     * }
+     * long sequence = commonService.incrCounter("orderNumber");
+     * String orderNumber = String.format("ORD-%06d", sequence);
      * }</pre>
      *
-     * <h3>Thread Safety</h3>
-     * This operation is guaranteed to be atomic and thread-safe. Multiple concurrent calls
+     * <p>This operation is guaranteed to be atomic and thread-safe. Multiple concurrent calls
      * with the same key will receive unique, sequential values without gaps or duplicates.
      *
      * @param key the unique name of the counter; must not be null or empty
      * @return the incremented value (1 for first call, 2 for second, etc.)
      * @throws IllegalArgumentException if key is null or empty
-     * @throws PersistenceException if the increment operation fails
      */
     public long incrCounter(String key);
 }

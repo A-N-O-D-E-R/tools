@@ -16,10 +16,21 @@ import com.anode.tool.commands.zip.Zip;
 import lombok.extern.slf4j.Slf4j;
 
 
+/**
+ * Utility class for classpath operations.
+ */
 @Slf4j
 public class ClassPathUtils {
-    
-    public static List<String> findAnnotedClasses(Path jar, Set<Class> annotedClassType) throws IOException, ClassNotFoundException{
+
+	/**
+	 * Finds annotated classes in a JAR file.
+	 * @param jar the JAR file path
+	 * @param annotedClassType the annotation types to look for
+	 * @return list of class names that have the specified annotations
+	 * @throws IOException if an I/O error occurs
+	 * @throws ClassNotFoundException if a class is not found
+	 */
+	public static List<String> findAnnotedClasses(Path jar, Set<Class> annotedClassType) throws IOException, ClassNotFoundException {
         Path tmpDir = Path.of(System.getProperty("java.io.tmpdir"));
         Path folder = tmpDir.resolve(jar.getFileName().toString().replace(".jar", ""));
         Path tmpJar = tmpDir.resolve(jar.getFileName().toString());
@@ -30,7 +41,17 @@ public class ClassPathUtils {
         return classes.stream().map(clazz -> clazz.getName()).collect(Collectors.toList());
     }
 
-    public static List<Class<?>> findAnnotedClasses(Path directory, Path rootDirectory, Set<Class> annotedClassType, ClassLoader classLoader) throws ClassNotFoundException, IOException {
+	/**
+	 * Recursively finds annotated classes in a directory.
+	 * @param directory the directory to search
+	 * @param rootDirectory the root directory for class name resolution
+	 * @param annotedClassType the annotation types to look for
+	 * @param classLoader the class loader to use
+	 * @return list of classes that have the specified annotations
+	 * @throws ClassNotFoundException if a class is not found
+	 * @throws IOException if an I/O error occurs
+	 */
+	public static List<Class<?>> findAnnotedClasses(Path directory, Path rootDirectory, Set<Class> annotedClassType, ClassLoader classLoader) throws ClassNotFoundException, IOException {
         List<Class<?>> classes = new LinkedList<>();
         for (Path path : listClassFiles(directory)) {
             if (Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) {
@@ -46,7 +67,13 @@ public class ClassPathUtils {
         return classes;
     }
 
-    private static String getClassName(Path classFilePath, Path rootDirectory) {
+	/**
+	 * Gets the class name from a class file path.
+	 * @param classFilePath the path to the class file
+	 * @param rootDirectory the root directory for class name resolution
+	 * @return the fully qualified class name
+	 */
+	private static String getClassName(Path classFilePath, Path rootDirectory) {
         Path relativePath = rootDirectory.relativize(classFilePath);
         String packageStructure = relativePath.toString().replace(Path.of("").toFile().separator, ".");
         String className = packageStructure.replace(".class", "");
@@ -62,7 +89,13 @@ public class ClassPathUtils {
         return result;
     }
 
-    public static List<Path> listClassFiles(Path directory) throws IOException {
+	/**
+	 * Lists all class files in a directory recursively.
+	 * @param directory the directory to search
+	 * @return list of paths to class files
+	 * @throws IOException if an I/O error occurs
+	 */
+	public static List<Path> listClassFiles(Path directory) throws IOException {
         List<Path> result = new ArrayList<>();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(directory)) {
             for (Path entry : stream) {
@@ -79,7 +112,19 @@ public class ClassPathUtils {
     }
 
 
-    public static Object instanciate(String className, ClassLoader classLoader, Object[] parameters, Class[] parameterTypes) throws java.lang.ClassNotFoundException,java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException,java.lang.InstantiationException{
+	/**
+	 * Instantiates a class with the given parameters.
+	 * @param className the fully qualified class name
+	 * @param classLoader the class loader to use
+	 * @param parameters the constructor parameters
+	 * @param parameterTypes the constructor parameter types
+	 * @return an instance of the class
+	 * @throws ClassNotFoundException if the class is not found
+	 * @throws IllegalAccessException if access to the constructor is denied
+	 * @throws java.lang.reflect.InvocationTargetException if the constructor throws an exception
+	 * @throws java.lang.InstantiationException if the class cannot be instantiated
+	 */
+	public static Object instanciate(String className, ClassLoader classLoader, Object[] parameters, Class[] parameterTypes) throws java.lang.ClassNotFoundException,java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException,java.lang.InstantiationException {
         Class connecteurClass = Class.forName(className, false, classLoader);
         java.lang.reflect.Constructor constructor = findMatchingConstructor(connecteurClass, parameterTypes);
         return constructor.newInstance(parameters);

@@ -1,0 +1,559 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for io.github.a-n-o-d-e-r:tool:jar:0.0.3-SNAPSHOT
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ line 134, column 21
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[WARNING] Could not transfer metadata pl.project13.maven/maven-metadata.xml from/to b2-releases (b2://A-N-O-D-E-R/maven-releases): Cannot access b2://A-N-O-D-E-R/maven-releases with type default using the available connector factories: BasicRepositoryConnectorFactory
+[WARNING] Could not transfer metadata com.diffplug.spotless/maven-metadata.xml from/to b2-releases (b2://A-N-O-D-E-R/maven-releases): Cannot access b2://A-N-O-D-E-R/maven-releases with type default using the available connector factories: BasicRepositoryConnectorFactory
+[WARNING] Could not transfer metadata org.apache.maven.plugins/maven-metadata.xml from/to b2-releases (b2://A-N-O-D-E-R/maven-releases): Cannot access b2://A-N-O-D-E-R/maven-releases with type default using the available connector factories: BasicRepositoryConnectorFactory
+[WARNING] Could not transfer metadata org.codehaus.mojo/maven-metadata.xml from/to b2-releases (b2://A-N-O-D-E-R/maven-releases): Cannot access b2://A-N-O-D-E-R/maven-releases with type default using the available connector factories: BasicRepositoryConnectorFactory
+[WARNING] Could not transfer metadata org.apache.maven.plugins:maven-javadoc-plugin/maven-metadata.xml from/to b2-releases (b2://A-N-O-D-E-R/maven-releases): Cannot access b2://A-N-O-D-E-R/maven-releases with type default using the available connector factories: BasicRepositoryConnectorFactory
+[INFO] 
+[INFO] ---------------------< io.github.a-n-o-d-e-r:tool >---------------------
+[INFO] Building tool 0.0.3-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] pl.project13.maven/maven-metadata.xml failed to transfer from b2://A-N-O-D-E-R/maven-releases during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of b2-releases has elapsed or updates are forced. Original error: Could not transfer metadata pl.project13.maven/maven-metadata.xml from/to b2-releases (b2://A-N-O-D-E-R/maven-releases): Cannot access b2://A-N-O-D-E-R/maven-releases with type default using the available connector factories: BasicRepositoryConnectorFactory
+[WARNING] com.diffplug.spotless/maven-metadata.xml failed to transfer from b2://A-N-O-D-E-R/maven-releases during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of b2-releases has elapsed or updates are forced. Original error: Could not transfer metadata com.diffplug.spotless/maven-metadata.xml from/to b2-releases (b2://A-N-O-D-E-R/maven-releases): Cannot access b2://A-N-O-D-E-R/maven-releases with type default using the available connector factories: BasicRepositoryConnectorFactory
+[WARNING] org.apache.maven.plugins/maven-metadata.xml failed to transfer from b2://A-N-O-D-E-R/maven-releases during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of b2-releases has elapsed or updates are forced. Original error: Could not transfer metadata org.apache.maven.plugins/maven-metadata.xml from/to b2-releases (b2://A-N-O-D-E-R/maven-releases): Cannot access b2://A-N-O-D-E-R/maven-releases with type default using the available connector factories: BasicRepositoryConnectorFactory
+[WARNING] org.codehaus.mojo/maven-metadata.xml failed to transfer from b2://A-N-O-D-E-R/maven-releases during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of b2-releases has elapsed or updates are forced. Original error: Could not transfer metadata org.codehaus.mojo/maven-metadata.xml from/to b2-releases (b2://A-N-O-D-E-R/maven-releases): Cannot access b2://A-N-O-D-E-R/maven-releases with type default using the available connector factories: BasicRepositoryConnectorFactory
+[INFO] 
+[INFO] >>> javadoc:3.12.0:javadoc (default-cli) > generate-sources @ tool >>>
+[INFO] 
+[INFO] --- git-commit-id:4.0.5:revision (get-the-git-infos) @ tool ---
+[INFO] 
+[INFO] --- resources:3.3.0:copy-resources (copy-resource-one) @ tool ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] <<< javadoc:3.12.0:javadoc (default-cli) < generate-sources @ tool <<<
+[INFO] 
+[INFO] 
+[INFO] --- javadoc:3.12.0:javadoc (default-cli) @ tool ---
+[WARNING] Source files encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  12.000 s
+[INFO] Finished at: 2026-07-20T23:02:22+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-javadoc-plugin:3.12.0:javadoc (default-cli) on project tool: An error has occurred in Javadoc report generation: 
+[ERROR] Exit code: 1
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/print/AbstractPrinter.java:4: warning: no comment
+[ERROR] public abstract class AbstractPrinter implements Printer {
+[ERROR]                 ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/print/AbstractPrinter.java:14: warning: no comment
+[ERROR] 	public AbstractPrinter(String name,String location,String ipAdress,Integer port) {
+[ERROR] 	       ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/print/Printer.java:6: warning: no comment
+[ERROR] 	public abstract String getIpAdress();
+[ERROR] 	                       ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/print/Printer.java:5: warning: no comment
+[ERROR] 	public abstract String getLocation();
+[ERROR] 	                       ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/print/Printer.java:4: warning: no comment
+[ERROR] 	public abstract String getName();
+[ERROR] 	                       ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/print/Printer.java:7: warning: no comment
+[ERROR] 	public abstract Integer getPort();
+[ERROR] 	                        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/print/Printer.java:8: warning: no comment
+[ERROR] 	public abstract void reset() throws PrintServicesException;
+[ERROR] 	                     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/api.java:3: warning: no comment
+[ERROR] public enum api {
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/api.java:12: warning: no comment
+[ERROR]     CONTENT
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/api.java:4: warning: no comment
+[ERROR]     DELETE_PATH,
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/api.java:7: warning: no comment
+[ERROR]     GET,
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/api.java:6: warning: no comment
+[ERROR]     GET_ARRAY_INDEX,
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/api.java:5: warning: no comment
+[ERROR]     GET_ARRAY_SIZE,
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/api.java:9: warning: no comment
+[ERROR]     GET_ARRAY_VALUE,
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/api.java:11: warning: no comment
+[ERROR]     PATH_EXISTS,
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/api.java:8: warning: no comment
+[ERROR]     SET,
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/api.java:10: warning: no comment
+[ERROR]     SET_ARRAY_VALUE,
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/print/BarCodePrinter.java:19: warning: no @throws for com.anode.tool.print.PrintServicesException
+[ERROR] 	void calibrate() throws PrintServicesException;
+[ERROR] 	     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/thread/BlockOnOfferQueue.java:12: warning: no comment
+[ERROR] public class BlockOnOfferQueue<T> implements BlockingQueue<T> {
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/thread/BlockOnOfferQueue.java:16: warning: no comment
+[ERROR]   public BlockOnOfferQueue(BlockingQueue<T> q) {
+[ERROR]          ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/commands/compile/ClassPathUtils.java:20: warning: no comment
+[ERROR] public class ClassPathUtils {
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/commands/compile/ClassPathUtils.java:20: warning: use of default constructor, which does not provide a comment
+[ERROR] public class ClassPathUtils {
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/commands/compile/ClassPathUtils.java:33: warning: no comment
+[ERROR]     public static List<Class<?>> findAnnotedClasses(Path directory, Path rootDirectory, Set<Class> annotedClassType, ClassLoader classLoader) throws ClassNotFoundException, IOException {
+[ERROR]                                  ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/commands/compile/ClassPathUtils.java:22: warning: no comment
+[ERROR]     public static List<String> findAnnotedClasses(Path jar, Set<Class> annotedClassType) throws IOException, ClassNotFoundException{
+[ERROR]                                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/commands/compile/ClassPathUtils.java:82: warning: no comment
+[ERROR]     public static Object instanciate(String className, ClassLoader classLoader, Object[] parameters, Class[] parameterTypes) throws java.lang.ClassNotFoundException,java.lang.IllegalAccessException,java.lang.reflect.InvocationTargetException,java.lang.InstantiationException{
+[ERROR]                          ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/commands/compile/ClassPathUtils.java:65: warning: no comment
+[ERROR]     public static List<Path> listClassFiles(Path directory) throws IOException {
+[ERROR]                              ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/thread/ClosableThreadLocal.java:5: warning: no comment
+[ERROR] public class ClosableThreadLocal<T> implements Closeable {
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/thread/ClosableThreadLocal.java:6: warning: no comment
+[ERROR]     public ClosableThreadLocal(final T initialValue) {
+[ERROR]            ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/thread/ClosableThreadLocal.java:16: warning: no comment
+[ERROR]     public T get() {
+[ERROR]              ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/thread/ClosableThreadLocal.java:11: warning: no comment
+[ERROR]     public ClosableThreadLocal<T> set(final T value) {
+[ERROR]                                   ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/print/CommandLinePrint.java:14: warning: no comment
+[ERROR] public class CommandLinePrint {
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/print/CommandLinePrint.java:14: warning: use of default constructor, which does not provide a comment
+[ERROR] public class CommandLinePrint {
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/print/CommandLinePrint.java:16: warning: no comment
+[ERROR] 	public static void main(String[] args) throws PrintServicesException, IOException {
+[ERROR] 	                   ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:27: warning: no @param for <S>
+[ERROR]     <S extends T> S  getLocked(ID id);
+[ERROR]                      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:27: warning: no @param for id
+[ERROR]     <S extends T> S  getLocked(ID id);
+[ERROR]                      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:27: warning: no @return
+[ERROR]     <S extends T> S  getLocked(ID id);
+[ERROR]                      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:10: warning: no comment
+[ERROR] public interface CommonRepository<T,ID extends Serializable> {
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:18: warning: no comment
+[ERROR]     void delete(ID id);
+[ERROR]          ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:12: warning: no comment
+[ERROR]     Optional<T> get(ID id);
+[ERROR]                 ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:19: warning: no comment
+[ERROR]     <S extends T> List<S> getAll();
+[ERROR]                           ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:20: warning: no comment
+[ERROR]     <S extends T> S getUniqueItem(String uniqueKeyName, String uniqueKeyValue);
+[ERROR]                     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:13: warning: no comment
+[ERROR]     <S extends T> S save(S entity);
+[ERROR]                     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:16: warning: no comment
+[ERROR]     <S extends T> void saveCollection(Collection<S> objects);
+[ERROR]                        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:14: warning: no comment
+[ERROR]     <S extends T> S saveOrUpdate(S entity);
+[ERROR]                     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:17: warning: no comment
+[ERROR]     <S extends T> void saveOrUpdateCollection(Collection<S> objects);
+[ERROR]                        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonRepository.java:15: warning: no comment
+[ERROR]     <S extends T> S update(S entity);
+[ERROR]                     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:110: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:127: error: reference not found
+[ERROR]      * @throws PersistenceException if the operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:138: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:150: error: reference not found
+[ERROR]      * @throws DuplicateKeyException if an object with this ID already exists (implementation-dependent)
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:151: error: reference not found
+[ERROR]      * @throws PersistenceException if the save operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:162: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:173: error: reference not found
+[ERROR]      * @throws EntityNotFoundException if no object with this ID exists (implementation-dependent)
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:174: error: reference not found
+[ERROR]      * @throws PersistenceException if the update operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:185: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:198: error: reference not found
+[ERROR]      * @throws PersistenceException if the batch save operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:209: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:222: error: reference not found
+[ERROR]      * @throws PersistenceException if the batch operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:233: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:245: error: reference not found
+[ERROR]      * @throws PersistenceException if the delete operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:257: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:279: error: reference not found
+[ERROR]      * @throws PersistenceException if the retrieval operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:290: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:308: error: reference not found
+[ERROR]      * @throws PersistenceException if the retrieval operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:320: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:347: error: reference not found
+[ERROR]      * @throws NonUniqueResultException if multiple objects match (implementation-dependent)
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:348: error: reference not found
+[ERROR]      * @throws PersistenceException if the query operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:365: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:399: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Lock Semantics</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:412: error: reference not found
+[ERROR]      * @throws TransactionRequiredException if called outside a transaction context
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:413: error: reference not found
+[ERROR]      * @throws LockTimeoutException if lock cannot be acquired within timeout period
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:414: error: reference not found
+[ERROR]      * @throws PersistenceException if the locking operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:434: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:460: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>ID Mapping</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:472: error: reference not found
+[ERROR]      * @throws PersistenceException if the cloning operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:485: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:504: error: reference not found
+[ERROR]      * @throws PersistenceException if the operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:515: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Use Cases</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:523: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Example Usage</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:549: error: unexpected heading used: <H3>, compared to implicit preceding heading: <H3>
+[ERROR]      * <h3>Thread Safety</h3>
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:556: error: reference not found
+[ERROR]      * @throws PersistenceException if the increment operation fails
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:127: warning: cannot find exception type by name
+[ERROR]      * @throws PersistenceException if the operation fails
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:150: warning: cannot find exception type by name
+[ERROR]      * @throws DuplicateKeyException if an object with this ID already exists (implementation-dependent)
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:173: warning: cannot find exception type by name
+[ERROR]      * @throws EntityNotFoundException if no object with this ID exists (implementation-dependent)
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:198: warning: cannot find exception type by name
+[ERROR]      * @throws PersistenceException if the batch save operation fails
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:222: warning: cannot find exception type by name
+[ERROR]      * @throws PersistenceException if the batch operation fails
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:245: warning: cannot find exception type by name
+[ERROR]      * @throws PersistenceException if the delete operation fails
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:279: warning: cannot find exception type by name
+[ERROR]      * @throws PersistenceException if the retrieval operation fails
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:308: warning: cannot find exception type by name
+[ERROR]      * @throws PersistenceException if the retrieval operation fails
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:347: warning: cannot find exception type by name
+[ERROR]      * @throws NonUniqueResultException if multiple objects match (implementation-dependent)
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:412: warning: cannot find exception type by name
+[ERROR]      * @throws TransactionRequiredException if called outside a transaction context
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:472: warning: cannot find exception type by name
+[ERROR]      * @throws PersistenceException if the cloning operation fails
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:504: warning: cannot find exception type by name
+[ERROR]      * @throws PersistenceException if the operation fails
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/service/CommonService.java:556: warning: cannot find exception type by name
+[ERROR]      * @throws PersistenceException if the increment operation fails
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/commands/compile/CustomTempClassLoader.java:16: warning: no comment
+[ERROR] public class CustomTempClassLoader  extends ClassLoader{
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/commands/compile/CustomTempClassLoader.java:20: warning: no comment
+[ERROR]         public CustomTempClassLoader(Map<String, String> classPathMap) {
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DataType.java:3: warning: no comment
+[ERROR] public enum DataType {
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DataType.java:6: warning: no comment
+[ERROR]     BOOLEAN("boolean"),
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DataType.java:5: warning: no comment
+[ERROR]     DATE("date"),
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DataType.java:9: warning: no comment
+[ERROR]     DECIMAL("decimal");
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DataType.java:7: warning: no comment
+[ERROR]     INTEGER("integer"),
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DataType.java:8: warning: no comment
+[ERROR]     LONG("long"),
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DataType.java:4: warning: no comment
+[ERROR]     STRING("string"),
+[ERROR]     ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DiffInfo.java:3: warning: no comment
+[ERROR] public class DiffInfo {
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DiffInfo.java:9: warning: no comment
+[ERROR]   public DiffInfo(PathDiffResult diffResult, PathValue left, PathValue right) {
+[ERROR]          ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DiffInfo.java:15: warning: no comment
+[ERROR]   public PathDiffResult getDiffResult() {
+[ERROR]                         ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DiffInfo.java:19: warning: no comment
+[ERROR]   public PathValue getLeft() {
+[ERROR]                    ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/DiffInfo.java:23: warning: no comment
+[ERROR]   public PathValue getRight() {
+[ERROR]                    ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:17: warning: no @return
+[ERROR]   boolean isTyped();
+[ERROR]           ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:22: warning: no @return
+[ERROR]   String getType();
+[ERROR]          ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:27: warning: no @param for path
+[ERROR]   DataType getLeafNodeDataType(String path, String... vargs);
+[ERROR]            ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:27: warning: no @param for vargs
+[ERROR]   DataType getLeafNodeDataType(String path, String... vargs);
+[ERROR]            ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:27: warning: no @return
+[ERROR]   DataType getLeafNodeDataType(String path, String... vargs);
+[ERROR]            ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:32: warning: no @param for path
+[ERROR]   DataType getArrayValueLeafNodeDataType(String path, String... vargs);
+[ERROR]            ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:32: warning: no @param for vargs
+[ERROR]   DataType getArrayValueLeafNodeDataType(String path, String... vargs);
+[ERROR]            ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:32: warning: no @return
+[ERROR]   DataType getArrayValueLeafNodeDataType(String path, String... vargs);
+[ERROR]            ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:38: warning: no @param for type
+[ERROR]   void setType(String type);
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:47: warning: no @param for type
+[ERROR]   void setType(String type, boolean validateAtReadWriteOnly);
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:47: warning: no @param for validateAtReadWriteOnly
+[ERROR]   void setType(String type, boolean validateAtReadWriteOnly);
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:53: warning: no @param for type
+[ERROR]   void setType(String type, validationTypes validationType);
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:53: warning: no @param for validationType
+[ERROR]   void setType(String type, validationTypes validationType);
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:83: warning: empty <p> tag
+[ERROR]    * <p>
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:88: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:115: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:128: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:141: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:154: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:167: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:180: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:193: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:206: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:219: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:232: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:245: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:258: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:268: warning: no description for @return
+[ERROR]    * @return
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:275: warning: no description for @return
+[ERROR]    * @return
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:285: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:295: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:305: error: reference not found
+[ERROR]    * @throws UnifyException If path is not found or path is a leaf node
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:319: error: reference not found
+[ERROR]    * @throws UnifyException If the path specified does not point to a complex object
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:323: warning: no @return
+[ERROR]   Document getContent(String path, boolean returnTypedDocument, boolean includeFullPath, String... vargs);
+[ERROR]            ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:333: error: reference not found
+[ERROR]    * @throws UnifyException If the from document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:346: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:358: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:370: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:382: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:394: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:406: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:419: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:432: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:445: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:458: error: reference not found
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:485: warning: no @return
+[ERROR]   List<String> flatten();
+[ERROR]                ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:490: warning: no @return
+[ERROR]   List<PathValue> flattenWithValues();
+[ERROR]                   ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:499: warning: no @return
+[ERROR]   List<DiffInfo> getDifferences(Document right, boolean onlyDifferences);
+[ERROR]                  ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:510: warning: no @return
+[ERROR]   public List<DiffInfo> getDifferences(String leftPath, Document right, String rightPath, boolean onlyDifferences);
+[ERROR]                         ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:517: error: reference not found
+[ERROR]    * @throws UnifyException exception containing the list of errors encountered
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:529: error: reference not found
+[ERROR]    * @throws UnifyException exception containing the list of errors encountered
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:538: error: reference not found
+[ERROR]    * @throws UnifyException exception containing the list of errors encountered
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:548: error: reference not found
+[ERROR]    * @throws UnifyException if the path is not found in the document
+[ERROR]      ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:555: warning: no @return
+[ERROR]   public validationTypes getValidationType();
+[ERROR]                          ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:12: warning: no comment
+[ERROR] public interface Document {
+[ERROR]        ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:88: warning: cannot find exception type by name
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]              ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:115: warning: cannot find exception type by name
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]              ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:128: warning: cannot find exception type by name
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]              ^
+[ERROR] /home/arthur/Documents/Code/perso/tools/src/main/java/com/anode/tool/document/Document.java:141: warning: cannot find exception type by name
+[ERROR]    * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
+[ERROR]              ^
+[ERROR] 67 errors
+[ERROR] 100 warnings
+[ERROR] Command line was: /home/arthur/.sdkman/candidates/java/21.0.9-tem/bin/javadoc -J-Duser.language= -J-Duser.country= @options @packages
+[ERROR] 
+[ERROR] Refer to the generated Javadoc files in '/home/arthur/Documents/Code/perso/tools/target/reports/apidocs' dir.
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

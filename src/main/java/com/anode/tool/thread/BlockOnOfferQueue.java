@@ -9,13 +9,20 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
+/**
+ * A wrapper around BlockingQueue that blocks on offer operations.
+ */
 public class BlockOnOfferQueue<T> implements BlockingQueue<T> {
 
-  private BlockingQueue<T> q = null;
+	private BlockingQueue<T> q = null;
 
-  public BlockOnOfferQueue(BlockingQueue<T> q) {
-    this.q = q;
-  }
+	/**
+	 * Constructs a BlockOnOfferQueue wrapping the given BlockingQueue.
+	 * @param q the blocking queue to wrap
+	 */
+	public BlockOnOfferQueue(BlockingQueue<T> q) {
+		this.q = q;
+	}
 
   @Override
   public boolean add(T t) {

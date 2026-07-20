@@ -11,19 +11,30 @@ import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Custom class loader for temporary classes.
+ */
 @Slf4j
+public class CustomTempClassLoader extends ClassLoader {
 
-public class CustomTempClassLoader  extends ClassLoader{
+	private Map<String, String> classPathMap = new HashMap<>();
 
-        private Map<String, String> classPathMap = new HashMap<>();
-    
-        public CustomTempClassLoader(Map<String, String> classPathMap) {
-            this.classPathMap=classPathMap;
-        }
-    
-        // The findClass method is overridden
-        @Override
-        public Class<? > findClass(String name) throws ClassNotFoundException {
+	/**
+	 * Constructs a CustomTempClassLoader with the given class path map.
+	 * @param classPathMap mapping of class names to file paths
+	 */
+	public CustomTempClassLoader(Map<String, String> classPathMap) {
+		this.classPathMap = classPathMap;
+	}
+
+	/**
+	 * Finds and loads a class by name.
+	 * @param name the fully qualified class name
+	 * @return the loaded class
+	 * @throws ClassNotFoundException if the class is not found
+	 */
+	@Override
+	public Class<?> findClass(String name) throws ClassNotFoundException {
             String classPath = classPathMap.get(name);
             File file = new File(classPath);
             if (! file.exists()) {
@@ -33,10 +44,15 @@ public class CustomTempClassLoader  extends ClassLoader{
             if (classBytes == null || classBytes.length == 0) {
                 throw new ClassNotFoundException();
             }
-            return defineClass(name, classBytes, 0, classBytes.length);
-        }
-    
-        private byte[] getClassData(File file) {
+			return defineClass(name, classBytes, 0, classBytes.length);
+		}
+
+		/**
+		 * Gets the class data from a file.
+		 * @param file the class file
+		 * @return the class bytes
+		 */
+		private byte[] getClassData(File file) {
             try (InputStream ins = new FileInputStream(file); ByteArrayOutputStream baos = new
                     ByteArrayOutputStream()) {
                 byte[] buffer = new byte[4096];

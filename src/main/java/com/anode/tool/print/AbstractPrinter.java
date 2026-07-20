@@ -1,6 +1,8 @@
 package com.anode.tool.print;
 
-
+/**
+ * Abstract base class for printer implementations.
+ */
 public abstract class AbstractPrinter implements Printer {
 
 	private final String name;
@@ -10,7 +12,14 @@ public abstract class AbstractPrinter implements Printer {
 	private final String ipAdress;
 
 	private final Integer port;
-	
+
+	/**
+	 * Constructs an AbstractPrinter with the specified parameters.
+	 * @param name the printer name
+	 * @param location the printer location
+	 * @param ipAdress the printer IP address
+	 * @param port the printer port number
+	 */
 	public AbstractPrinter(String name,String location,String ipAdress,Integer port) {
 		this.name = name ;
 		this.location = location ;

@@ -4,51 +4,65 @@ package com.anode.tool.document;
 import java.math.BigDecimal;
 import java.util.List;
 
-/*
- * @author Deepak Arora
+/**
+ * Represents a document that can store and manipulate structured data.
+ * All methods that take in a path parameter assume the path is correctly formed.
  *
- * All methods in this file that take in a path as a parameter throw an exception in case the path is incorrectly formed
+ * @author Deepak Arora
  */
 public interface Document {
 
   /**
-   * Returns a boolean specifying if this document is a typed document
+   * Returns a boolean specifying if this document is a typed document.
+   * @return true if this is a typed document, false otherwise
    */
   boolean isTyped();
 
   /**
-   * Returns the type of the document
+   * Returns the type of the document.
+   * @return the document type
    */
   String getType();
 
   /**
-   * Returns the data type of the leaf node
+   * Returns the data type of the leaf node.
+   * @param path the path to the leaf node
+   * @param vargs values to replace % characters in path
+   * @return the data type of the leaf node
    */
   DataType getLeafNodeDataType(String path, String... vargs);
 
   /**
-   * Returns the date type of the leaf node
+   * Returns the data type of the leaf node in array value.
+   * @param path the path to the array value
+   * @param vargs values to replace % characters in path
+   * @return the data type of the leaf node
    */
   DataType getArrayValueLeafNodeDataType(String path, String... vargs);
 
   /**
    * Sets the type of a document. The model object needs to be already loaded. Validation against the model will
-   * be carried out an an exception thrown if a violation is found
+   * be carried out and an exception thrown if a violation is found.
+   * @param type the document type to set
    */
   void setType(String type);
 
   /**
    * Sets the type of a document. The model object needs to be already loaded. Validation against the model will
-   * be carried out as per the value of the variable validateAtReadWriteOnly and an exception thrown if a violation is found
+   * be carried out as per the value of the variable validateAtReadWriteOnly and an exception thrown if a violation is found.
    * <p>
-   * This method is deprecated - use the new method setType(String type, CONSTS_JDOCS.VALIDATION_TYPE validationType)
+   * This method is deprecated - use the new method setType(String type, validationTypes validationType).
+   * @param type the document type to set
+   * @param validateAtReadWriteOnly whether to validate against read-write-only restrictions
    */
   @Deprecated
   void setType(String type, boolean validateAtReadWriteOnly);
 
   /**
    * Sets the type of a document. The model object needs to be already loaded. Validation against the model will
-   * be carried out as per the value of the variable validationType and an exception thrown if a violation is found
+   * be carried out as per the value of the variable validationType and an exception thrown if a violation is found.
+   * @param type the document type to set
+   * @param validationType the validation type to apply
    */
   void setType(String type, validationTypes validationType);
 
@@ -80,14 +94,10 @@ public interface Document {
 
   /**
    * Gets the size of the array at the path specified. The path specified has to be of array type in the json.
-   * <p>
    *
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return the size of the array. If the path is not found in the document, a value of 0 is returned
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
-   *                        If the path specified does not contain empty square brackets in the end i.e. []
-   *                        If the node in the json document corresponding to the path is not of an array type
    */
   int getArraySize(String path, String... vargs);
 
@@ -112,10 +122,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the Boolean value stored at the path else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
-   *                        If the document is a typed document and the type of the path in the model document does not match
-   *                        If the type of the value specified in the path in the document does not match
-   *                        If the path specified does not point to a leaf node
    */
   Boolean getBoolean(String path, String... vargs);
 
@@ -125,10 +131,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the Boolean value stored at the path else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
-   *                        If the document is a typed document and the type of the path in the model document does not match
-   *                        If the type of the value specified in the path in the document does not match
-   *                        If the path specified does not point to a leaf node
    */
   Integer getInteger(String path, String... vargs);
 
@@ -138,10 +140,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the Boolean value stored at the path else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
-   *                        If the document is a typed document and the type of the path in the model document does not match
-   *                        If the type of the value specified in the path in the document does not match
-   *                        If the path specified does not point to a leaf node
    */
   String getString(String path, String... vargs);
 
@@ -151,10 +149,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the Boolean value stored at the path else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
-   *                        If the document is a typed document and the type of the path in the model document does not match
-   *                        If the type of the value specified in the path in the document does not match
-   *                        If the path specified does not point to a leaf node
    */
   Long getLong(String path, String... vargs);
 
@@ -164,10 +158,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the BigDecimal value stored at the path else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
-   *                        If the document is a typed document and the type of the path in the model document does not match
-   *                        If the type of the value specified in the path in the document does not match
-   *                        If the path specified does not point to a leaf node
    */
   BigDecimal getBigDecimal(String path, String... vargs);
 
@@ -177,10 +167,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the value stored at the path as an object of the type Integer / Long / BigDecimal / String / Boolean else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
-   *                        If the document is a typed document and the type of the path in the model document does not match
-   *                        If the type of the value specified in the path in the document does not match
-   *                        If the path specified does not point to a leaf node
    */
   Object getValue(String path, String... vargs);
 
@@ -190,10 +176,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the value stored at the path as an object of the type Integer / Long / BigDecimal / String / Boolean else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
-   *                        If the document is a typed document and the type of the path in the model document does not match
-   *                        If the type of the value specified in the path in the document does not match
-   *                        If the path specified does not point to a leaf node
    */
   Object getArrayValue(String path, String... vargs);
 
@@ -203,10 +185,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the Boolean value stored at the path else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
-   *                        If the document is a typed document and the type of the path in the model document does not match
-   *                        If the type of the value specified in the path in the document does not match
-   *                        If the path specified does not point to a leaf node
    */
   Boolean getArrayValueBoolean(String path, String... vargs);
 
@@ -216,7 +194,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the Boolean value stored at the path else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the type of the value specified in the path in the document does not match
    *                        If the path specified is not of array element type
@@ -229,7 +206,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the Boolean value stored at the path else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the type of the value specified in the path in the document does not match
    *                        If the path specified is not of array element type
@@ -242,7 +218,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the Boolean value stored at the path else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the type of the value specified in the path in the document does not match
    *                        If the path specified is not of array element type
@@ -255,7 +230,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return For a base document, the Boolean value stored at the path else null
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the type of the value specified in the path in the document does not match
    *                        If the path specified is not of array element type
@@ -282,7 +256,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return true if the path exists else false
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    */
   boolean pathExists(String path, String... vargs);
 
@@ -292,7 +265,6 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return true if the path is an array else false
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    */
   boolean isArray(String path, String... vargs);
 
@@ -302,23 +274,19 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return Document
-   * @throws UnifyException If path is not found or path is a leaf node
    */
   Document getDocument(String path, String... vargs);
 
   /**
-   * Returns the content of the specified path as a new document
+   * Returns the content of the specified path as a new document.
    * The path can only point to a complex object or an array element. It can also point to an array only if
-   * the includeFullkPath variable is true
+   * the includeFullPath variable is true.
    *
    * @param path                the path in the document from which the contents are to be extracted
-   * @param returnTypedDocument only applicable if this document is a JDocument. If true, an instance of JDocument
-   *                            is returned else an instance of BaseDocument
-   * @param includeFullPath     the returned document is constructed with the full path from root else the path from root is skipped
+   * @param returnTypedDocument if true, return a typed document if applicable
+   * @param includeFullPath     if true, the returned document includes the full path from root
    * @param vargs               the values to replace the % characters in path
-   * @throws UnifyException If the path specified does not point to a complex object
-   *                        If the return document is a JDocument but does not conform to the model document
-   *                        If path points to an array but the includeFullPath is false
+   * @return a Document containing the content at the specified path
    */
   Document getContent(String path, boolean returnTypedDocument, boolean includeFullPath, String... vargs);
 
@@ -330,7 +298,6 @@ public interface Document {
    * @param fromPath the path in the document to copy from (may contain % placeholders)
    * @param toPath   the path in this document to copy to (may contain % placeholders)
    * @param vargs    the values to replace the % characters in from path and to path
-   * @throws UnifyException If the from document is a typed document and the path is not found in the associated model document
    *                        If the types of the from and to documents do not match
    *                        If either of the paths point to a leaf node
    *                        If the to document is a typed document and if any of the resulting paths is not present in the model document
@@ -343,7 +310,6 @@ public interface Document {
    * @param path  the path
    * @param value the value to set in the path
    * @param vargs the values to replace the % characters in path
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the path specified does not point to a leaf node
    */
@@ -355,7 +321,6 @@ public interface Document {
    * @param path  the path
    * @param value the value to set in the path
    * @param vargs the values to replace the % characters in path
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the path specified does not point to a leaf node
    */
@@ -367,7 +332,6 @@ public interface Document {
    * @param path  the path
    * @param value the value to set in the path
    * @param vargs the values to replace the % characters in path
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the path specified does not point to a leaf node
    */
@@ -379,7 +343,6 @@ public interface Document {
    * @param path  the path
    * @param value the value to set in the path
    * @param vargs the values to replace the % characters in path
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the path specified does not point to a leaf node
    */
@@ -391,7 +354,6 @@ public interface Document {
    * @param path  the path
    * @param value the value to set in the path
    * @param vargs the values to replace the % characters in path
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the path specified does not point to a leaf node
    */
@@ -403,7 +365,6 @@ public interface Document {
    * @param path  the path
    * @param value the value to set
    * @param vargs the values to replace the % characters in path
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the type of the value specified in the path in the document does not match
    *                        If the path specified is not of array element type
@@ -416,7 +377,6 @@ public interface Document {
    * @param path  the path
    * @param value the value to set
    * @param vargs the values to replace the % characters in path
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the type of the value specified in the path in the document does not match
    *                        If the path specified is not of array element type
@@ -429,7 +389,6 @@ public interface Document {
    * @param path  the path
    * @param value the value to set
    * @param vargs the values to replace the % characters in path
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the type of the value specified in the path in the document does not match
    *                        If the path specified is not of array element type
@@ -442,7 +401,6 @@ public interface Document {
    * @param path  the path
    * @param value the value to set
    * @param vargs the values to replace the % characters in path
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the type of the value specified in the path in the document does not match
    *                        If the path specified is not of array element type
@@ -455,7 +413,6 @@ public interface Document {
    * @param path  the path
    * @param value the value to set
    * @param vargs the values to replace the % characters in path
-   * @throws UnifyException If the document is a typed document and the path is not found in the associated model document
    *                        If the document is a typed document and the type of the path in the model document does not match
    *                        If the type of the value specified in the path in the document does not match
    *                        If the path specified is not of array element type
@@ -480,32 +437,36 @@ public interface Document {
   void merge(Document d, List<String> pathsToDelete);
 
   /**
-   * Get the list of paths existing in the document
+   * Get the list of paths existing in the document.
+   * @return a list of all paths in the document
    */
   List<String> flatten();
 
   /**
-   * Get the list of paths existing in the document along with the value in each path as a string
+   * Get the list of paths existing in the document along with the value in each path as a string.
+   * @return a list of paths with their values
    */
   List<PathValue> flattenWithValues();
 
   /**
    * Compares two documents and return the results in a list. The document on which the method is
-   * invoked is assumed to be the left document
+   * invoked is assumed to be the left document.
    *
    * @param right           the right document to compare
    * @param onlyDifferences specifies if only difference results are to be returned or all
+   * @return a list of differences between the documents
    */
   List<DiffInfo> getDifferences(Document right, boolean onlyDifferences);
 
   /**
    * Compares two subdocuments and return the results in a list. The document on which the method is
-   * invoked is assumed to be the left document
+   * invoked is assumed to be the left document.
    *
-   * @param leftPath        the subdocument inside of the specified path
+   * @param leftPath        the path to the left subdocument
    * @param right           the right document to compare
-   * @param rightPath       the subdocument inside of the specified path
+   * @param rightPath       the path to the right subdocument
    * @param onlyDifferences specifies if only difference results are to be returned or all
+   * @return a list of differences between the subdocuments
    */
   public List<DiffInfo> getDifferences(String leftPath, Document right, String rightPath, boolean onlyDifferences);
 
@@ -514,7 +475,6 @@ public interface Document {
    * All validation errors are collected and returned in the exception
    *
    * @param type the type of the document
-   * @throws UnifyException exception containing the list of errors encountered
    *
    * This method is deprecated - use the new methods validateAllPaths or validateModelPaths
    */
@@ -526,7 +486,6 @@ public interface Document {
    * All validation errors are collected and returned in the exception
    *
    * @param type the type of the document
-   * @throws UnifyException exception containing the list of errors encountered
    */
   public void validateAllPaths(String type);
 
@@ -535,7 +494,6 @@ public interface Document {
    * All validation errors are collected and returned in the exception
    *
    * @param type the type of the document
-   * @throws UnifyException exception containing the list of errors encountered
    */
   public void validateModelPaths(String type);
 
@@ -545,12 +503,12 @@ public interface Document {
    * @param path  the path
    * @param vargs the values to replace the % characters in path
    * @return true if the path is a leaf node in the document
-   * @throws UnifyException if the path is not found in the document
    */
   public boolean isLeafNode(String path, String... vargs);
 
   /**
-   * returns the validation type in effect
+   * Returns the validation type in effect.
+   * @return the validation type
    */
   public validationTypes getValidationType();
 

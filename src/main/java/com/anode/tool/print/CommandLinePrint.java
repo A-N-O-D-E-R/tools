@@ -11,8 +11,17 @@ import java.util.List;
 
 import com.anode.tool.print.zebra.TLP3842;
 
+/**
+ * Command line utility for printing bar codes.
+ */
 public class CommandLinePrint {
 
+	/**
+	 * Main entry point for command line printing.
+	 * @param args command line arguments
+	 * @throws PrintServicesException if printing fails
+	 * @throws IOException if an I/O error occurs
+	 */
 	public static void main(String[] args) throws PrintServicesException, IOException {
 		TLP3842 printer = new TLP3842("Zebra 3842", "rdc", args[0], Integer.valueOf(args[1]), Integer.valueOf(args[3]), Integer.valueOf(args[4]), Integer.valueOf(args[5]), Integer
 				.valueOf(args[6]), Integer.valueOf(args[7]), Integer.valueOf(args[8]));
