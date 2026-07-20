@@ -21,6 +21,14 @@
         <url>https://github.com/A-N-O-D-E-R/tools</url>
         <tag>HEAD</tag>
     </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub A-N-O-D-E-R Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/A-N-O-D-E-R/tools</url>
+        </repository>
+    </distributionManagement>
      <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
