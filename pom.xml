@@ -3,6 +3,26 @@
 	<groupId>io.github.a-n-o-d-e-r</groupId>
 	<artifactId>tool</artifactId>
 	<version>0.0.3-SNAPSHOT</version>
+	<name>Tool</name>
+	<description>A comprehensive Java toolkit for Maven project manipulation, template rendering, and deployment automation.</description>
+	<url>https://github.com/A-N-O-D-E-R/tools</url>
+
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>a-n-o-d-e-r</id>
+			<name>A-N-O-D-E-R</name>
+			<url>https://github.com/A-N-O-D-E-R</url>
+		</developer>
+	</developers>
+
 	<properties>
         <vavr.version>0.10.5</vavr.version>
         <jackson.version>2.18.2</jackson.version>
