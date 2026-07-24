@@ -10,23 +10,55 @@ import com.anode.tool.print.AbstractPrinter;
 import com.anode.tool.print.BarCodePrinter;
 import com.anode.tool.print.PrintServicesException;
 
+/**
+ * Abstract base class for Zebra EPL2 printer implementations.
+ */
 abstract class EPL2Printer extends AbstractPrinter implements BarCodePrinter {
 
-	private int defaultSpeed;
-	private int defaultDensity;
-	private int dotWidth;
-	private int xStartPosition;
-	private int yIncrement;
-	private int yStartPosition;
-	
+    /**
+     * The default printing speed.
+     */
+    private int defaultSpeed;
 
-	/**
-	 * @param name
-	 * @param location
-	 * @param ipAdress
-	 * @param port
-	 */
-	public EPL2Printer(String name, String location, String ipAdress, int port, int defaultSpeed, int defaultDensity, int dotWidth, int xStartPosition, int yStartPosition, int yIncrement) {
+    /**
+     * The default print density.
+     */
+    private int defaultDensity;
+
+    /**
+     * The dot width for printing.
+     */
+    private int dotWidth;
+
+    /**
+     * The X-axis start position for printing.
+     */
+    private int xStartPosition;
+
+    /**
+     * The Y-axis increment between lines.
+     */
+    private int yIncrement;
+
+    /**
+     * The Y-axis start position for printing.
+     */
+    private int yStartPosition;
+
+    /**
+     * Constructs an EPL2Printer with the specified parameters.
+     * @param name the printer name
+     * @param location the printer location
+     * @param ipAdress the printer IP address
+     * @param port the printer port
+     * @param defaultSpeed the default print speed
+     * @param defaultDensity the default print density
+     * @param dotWidth the dot width
+     * @param xStartPosition the X start position
+     * @param yStartPosition the Y start position
+     * @param yIncrement the Y increment
+     */
+    public EPL2Printer(String name, String location, String ipAdress, int port, int defaultSpeed, int defaultDensity, int dotWidth, int xStartPosition, int yStartPosition, int yIncrement) {
 		super(name, location, ipAdress, port);
 		this.defaultSpeed = defaultSpeed;
 		this.defaultDensity = defaultDensity;
@@ -36,7 +68,11 @@ abstract class EPL2Printer extends AbstractPrinter implements BarCodePrinter {
 		this.yIncrement = yIncrement ;
 	}
 
-	public void reset() throws PrintServicesException {
+    /**
+     * Resets the printer to default settings.
+     * @throws PrintServicesException if the reset fails
+     */
+    public void reset() throws PrintServicesException {
 		sendCommands("^@");
 
 		try {
@@ -54,7 +90,14 @@ abstract class EPL2Printer extends AbstractPrinter implements BarCodePrinter {
 		sendCommands(commands.toString());
 	}
 
-	public void printBarCode(List<String> barCodeList, int copies, boolean blockCopies) throws PrintServicesException {
+    /**
+     * Prints bar codes with the specified copies and arrangement.
+     * @param barCodeList the list of bar codes to print
+     * @param copies the number of copies
+     * @param blockCopies if true, copies are grouped by bar code; if false, all bar codes are repeated per copy
+     * @throws PrintServicesException if printing fails
+     */
+    public void printBarCode(List<String> barCodeList, int copies, boolean blockCopies) throws PrintServicesException {
 
 		StringBuffer commands = new StringBuffer();
 
@@ -75,7 +118,12 @@ abstract class EPL2Printer extends AbstractPrinter implements BarCodePrinter {
 		sendCommands(commands.toString());
 	}
 
-	private void addBarCodeCommands(String barCode, StringBuffer commandsBuffer) {
+    /**
+     * Adds EPL2 commands for printing a bar code to the buffer.
+     * @param barCode the bar code to print
+     * @param commandsBuffer the buffer to append commands to
+     */
+    private void addBarCodeCommands(String barCode, StringBuffer commandsBuffer) {
 		int yPosition = yStartPosition ;
 		String[] labels = barCode.split("\\\\") ;
 		for(String label : labels) {
@@ -84,7 +132,12 @@ abstract class EPL2Printer extends AbstractPrinter implements BarCodePrinter {
 		}
 	}
 
-	public void sendCommands(String commands) throws PrintServicesException {
+    /**
+     * Sends EPL2 commands to the printer via network socket.
+     * @param commands the commands to send
+     * @throws PrintServicesException if sending fails
+     */
+    public void sendCommands(String commands) throws PrintServicesException {
 
 		System.out.println("Sending\n" + commands + "\n to " + this);
 
@@ -113,7 +166,11 @@ abstract class EPL2Printer extends AbstractPrinter implements BarCodePrinter {
 
 	}
 
-	public void calibrate() throws PrintServicesException {
+    /**
+     * Calibrates the printer.
+     * @throws PrintServicesException if calibration fails
+     */
+    public void calibrate() throws PrintServicesException {
 		sendCommands("xa");
 	}
 

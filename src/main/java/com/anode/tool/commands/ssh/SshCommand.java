@@ -10,24 +10,42 @@ package com.anode.tool.commands.ssh;
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/**
+ * SSH command dispatcher defining the available SSH command types.
+ */
 class SshCommand {
-  enum SshCommandType {
-    EXEC_REMOTE_COMMAND {
-      @Override
-      String getSshChannelCommand(SshArgs sshArgs) {
-        SshCmdArgs sshCmdArgs = (SshCmdArgs) sshArgs;
-        return sshCmdArgs.getCommand();
-      }
-    },
 
-    SCP {
-      @Override
-      String getSshChannelCommand(SshArgs sshArgs) {
-        ScpArgs scpArgs = (ScpArgs) sshArgs;
-        return String.format("scp %s %s",scpArgs.getFetching()?"-f":"-t" ,scpArgs.getDestFileName());
-      }
-    };
+    /**
+     * Enumeration of SSH command types supported.
+     */
+    enum SshCommandType {
+        /**
+         * Remote command execution.
+         */
+        EXEC_REMOTE_COMMAND {
+            @Override
+            String getSshChannelCommand(SshArgs sshArgs) {
+                SshCmdArgs sshCmdArgs = (SshCmdArgs) sshArgs;
+                return sshCmdArgs.getCommand();
+            }
+        },
 
-    abstract String getSshChannelCommand(SshArgs sshArgs);
-  }
+        /**
+         * Secure copy (SCP) command.
+         */
+        SCP {
+            @Override
+            String getSshChannelCommand(SshArgs sshArgs) {
+                ScpArgs scpArgs = (ScpArgs) sshArgs;
+                return String.format("scp %s %s", scpArgs.getFetching() ? "-f" : "-t", scpArgs.getDestFileName());
+            }
+        };
+
+        /**
+         * Generates the SSH channel command string for this command type.
+         * @param sshArgs the SSH arguments
+         * @return the SSH channel command string
+         */
+        abstract String getSshChannelCommand(SshArgs sshArgs);
+    }
 }

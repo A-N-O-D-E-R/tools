@@ -13,19 +13,21 @@ package com.anode.tool.commands.ssh;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * Utility class for checking SSH protocol acknowledgments.
+ */
 class SshAcknowledge {
 
-  /**
-   * Check ssh protocol acknowledge.
-   *
-   * acknowledge returned value can be:
-   *  - 0 for success,
-   *  - 1 for error,
-   *  - 2 for fatal error,
-   *
-   * @param in ssh input stream
-   */
-  void checkAck(InputStream in) {
+    /**
+     * Checks the SSH protocol acknowledgment from an input stream.
+     * Acknowledgment values:
+     *  - 0 for success
+     *  - 1 for error
+     *  - 2 for fatal error
+     * @param in the SSH input stream to check
+     * @throws SshException if an error acknowledgment is received
+     */
+    void checkAck(InputStream in) {
     int ackVal = getAckValue(in);
     if (ackVal != 0 && ackVal != 'C') {
       handleAcknowledgeError(in, ackVal);
@@ -33,7 +35,13 @@ class SshAcknowledge {
   }
 
 
-  private int getAckValue(InputStream in) {
+    /**
+     * Reads the acknowledgment value from an input stream.
+     * @param in the input stream to read from
+     * @return the acknowledgment value
+     * @throws SshException if no acknowledgment is received
+     */
+    private int getAckValue(InputStream in) {
     try {
       return in.read();
     } catch (IOException e) {
@@ -41,7 +49,13 @@ class SshAcknowledge {
     }
   }
 
-  private void handleAcknowledgeError(InputStream in, int ackVal) {
+    /**
+     * Handles an error acknowledgment by throwing an appropriate exception.
+     * @param in the input stream to read error details from
+     * @param ackVal the acknowledgment value indicating the error type
+     * @throws SshException describing the acknowledgment error
+     */
+    private void handleAcknowledgeError(InputStream in, int ackVal) {
     switch (ackVal) {
       case -1:
         throwNoAck();
@@ -53,15 +67,29 @@ class SshAcknowledge {
     }
   }
 
-  private void throwNoAck() {
+    /**
+     * Throws an exception for no acknowledgment received.
+     * @throws SshException indicating no acknowledgment
+     */
+    private void throwNoAck() {
     throw new SshException("No acknowlegement received");
   }
 
-  private void throwAckErrorMessage(InputStream in) {
+    /**
+     * Throws an exception with the error message from the acknowledgment.
+     * @param in the input stream to read the error message from
+     * @throws SshException with the error message
+     */
+    private void throwAckErrorMessage(InputStream in) {
     throw new SshException(String.format("Ssh acknowlegement error: %s", getAckMessage(in)));
   }
 
-  private String getAckMessage(InputStream in) {
+    /**
+     * Reads the error message from an acknowledgment.
+     * @param in the input stream to read from
+     * @return the error message, or the exception message if reading fails
+     */
+    private String getAckMessage(InputStream in) {
     try {
       return tryToGetAckMessage(in);
     } catch(IOException e) {
@@ -69,7 +97,13 @@ class SshAcknowledge {
     }
   }
 
-  private String tryToGetAckMessage(InputStream in) throws IOException {
+    /**
+     * Attempts to read the error message from the acknowledgment stream.
+     * @param in the input stream to read from
+     * @return the error message
+     * @throws IOException if reading fails
+     */
+    private String tryToGetAckMessage(InputStream in) throws IOException {
     StringBuilder stringBuilder = new StringBuilder();
     int c;
 
@@ -81,7 +115,11 @@ class SshAcknowledge {
     return stringBuilder.toString();
   }
 
-  private void throwAckUnknownError() {
+    /**
+     * Throws an exception for an unknown acknowledgment.
+     * @throws SshException indicating unknown acknowledgment
+     */
+    private void throwAckUnknownError() {
     throw new SshException("Unknown acknowlegement received");
   }
 }

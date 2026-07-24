@@ -6,10 +6,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Utility class for string manipulation and stream conversion operations.
+ */
 public class StringUtils {
+    /**
+     * Private constructor to prevent instantiation of utility class.
+     */
     private StringUtils(){}
 
 
+    /**
+     * Counts the occurrences of a character in a string.
+     * @param s the string to search
+     * @param c the character to count
+     * @return the number of times the character appears in the string
+     */
     public static int getCount(String s, char c) {
         int count = 0;
         int index = 0;
@@ -35,6 +47,14 @@ public class StringUtils {
       }
 
 
+    /**
+     * Finds the index of the nth occurrence of a character in a string.
+     * @param s the string to search
+     * @param c the character to find
+     * @param occurrence the occurrence number (1-based)
+     * @param fromStart true to search from the start, false to search from the end
+     * @return the index of the character, or -1 if not found
+     */
     public static int getIndexOfChar(String s, char c, int occurrence, boolean fromStart) {
         if (s.isEmpty()) {
           return -1;
@@ -89,6 +109,11 @@ public class StringUtils {
       }
 
 
+      /**
+       * Checks if a string is null or contains only whitespace.
+       * @param s the string to check
+       * @return true if the string is null or empty after trimming
+       */
       public static boolean isNullOrEmpty(String s) {
         if ((s == null) || (s.trim().isEmpty() == true)) {
           return true;
@@ -99,6 +124,12 @@ public class StringUtils {
       }
 
 
+    /**
+     * Reads an InputStream and converts it to a UTF-8 string.
+     * @param inputStream the input stream to read
+     * @return the string content of the stream
+     * @throws RuntimeException if an I/O error occurs
+     */
     public static String getStringFromStream(InputStream inputStream) {
     ByteArrayOutputStream result = new ByteArrayOutputStream();
 
@@ -120,6 +151,13 @@ public class StringUtils {
     return s;
   }
 
+  /**
+   * Removes escape characters from a string.
+   * @param s the string to process
+   * @param ec the escape character
+   * @param chars the characters to unescape
+   * @return the processed string with escape characters removed
+   */
   public static String removeEscapeChars(String s, char ec, char... chars) {
     StringBuffer sb = new StringBuffer(s.length());
     int size = s.length();
@@ -149,6 +187,12 @@ public class StringUtils {
             }
           
           
+            /**
+             * Checks if a character equals any in a list of characters.
+             * @param first the character to compare
+             * @param others the array of characters to compare against
+             * @return true if first matches any character in others
+             */
             public static boolean compareWithMany(char first, char... others) {
               if (others == null) {
                 return false;
@@ -164,6 +208,13 @@ public class StringUtils {
             }
 
 
+            /**
+             * Adds escape characters to a string.
+             * @param s the string to process
+             * @param ec the escape character to prepend
+             * @param chars the characters to escape
+             * @return the processed string with escape characters added
+             */
             public static String escapeChars(String s, char ec, char... chars) {
               StringBuffer sb = new StringBuffer(s.length() + 10); // abitrarily assuming that there will not be more than 10 characters required to be escaped
               int size = s.length();
@@ -180,6 +231,13 @@ public class StringUtils {
           
 
 
+    /**
+     * Loads a resource file from the classpath as a string.
+     * @param clazz the class whose classloader will be used
+     * @param filePath the path to the resource file
+     * @return the content of the resource file, or null if not found
+     * @throws RuntimeException if an I/O error occurs
+     */
     public static String getResourceAsString(Class clazz, String filePath) {
       String s = null;
       InputStream is = clazz.getResourceAsStream(filePath);
@@ -200,6 +258,12 @@ public class StringUtils {
     }
 
 
+    /**
+     * Checks if a string equals any in a list of strings.
+     * @param first the string to compare
+     * @param others the array of strings to compare against
+     * @return true if first equals any string in others
+     */
     public static boolean compareWithMany(String first, String... others) {
       if (others == null) {
         return false;

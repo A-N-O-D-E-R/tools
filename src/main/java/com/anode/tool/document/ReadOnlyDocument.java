@@ -1,24 +1,26 @@
-
-
 package com.anode.tool.document;
-
-
 
 import java.math.BigDecimal;
 import java.util.List;
 
-
-
-/*
- * @author Deepak Arora
+/**
+ * Read-only wrapper for a Document that prevents modification operations.
+ * All write operations throw RuntimeException.
  */
 public class ReadOnlyDocument implements Document {
 
-  private Document d = null;
+    /**
+     * The wrapped document.
+     */
+    private Document d = null;
 
-  public ReadOnlyDocument(Document d) {
-    this.d = d;
-  }
+    /**
+     * Constructs a ReadOnlyDocument wrapping the given document.
+     * @param d the document to wrap
+     */
+    public ReadOnlyDocument(Document d) {
+        this.d = d;
+    }
 
   @Override
   public void deletePath(String path, String... vargs) {

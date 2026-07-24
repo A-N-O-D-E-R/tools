@@ -1,5 +1,3 @@
-
-
 package com.anode.tool.document;
 
 import java.io.BufferedInputStream;
@@ -17,26 +15,57 @@ import java.util.stream.Stream;
 
 import com.anode.tool.StringUtils;
 
+/**
+ * Utility class for analyzing and manipulating JSON paths in documents and files.
+ */
 public class JsonPathUtils {
 
-  private static final String pattern = "\\$\\.[a-zA-Z \\-\\[=%\\]\\.0-9_]+";
-  private static final Matcher matcher = Pattern.compile(pattern).matcher("");
+    /**
+     * Regular expression pattern for matching JSON paths.
+     */
+    private static final String pattern = "\\$\\.[a-zA-Z \\-\\[=%\\]\\.0-9_]+";
 
-  public void getUnusedPaths(String filePath, String dirPath, String filePattern) throws IOException {
+    /**
+     * Compiled pattern matcher for JSON paths.
+     */
+    private static final Matcher matcher = Pattern.compile(pattern).matcher("");
+
+    /**
+     * Finds and prints all unused paths from a document in a directory.
+     * @param filePath the path to the JSON document file
+     * @param dirPath the directory to search for path usages
+     * @param filePattern the file pattern to match
+     * @throws IOException if an I/O error occurs
+     */
+    public void getUnusedPaths(String filePath, String dirPath, String filePattern) throws IOException {
     Set<String> unusedPaths = new HashSet<>();
     getUniquePaths(filePath).forEach(unusedPaths::add);
     getUnusedPaths(unusedPaths, dirPath, filePattern);
     unusedPaths.forEach(System.out::println);
   }
 
-  public void getUsedPaths(String filePath, String dirPath, String filePattern) throws IOException {
+    /**
+     * Finds and prints all used paths from a document in a directory.
+     * @param filePath the path to the JSON document file
+     * @param dirPath the directory to search for path usages
+     * @param filePattern the file pattern to match
+     * @throws IOException if an I/O error occurs
+     */
+    public void getUsedPaths(String filePath, String dirPath, String filePattern) throws IOException {
     Set<String> usedPaths = new HashSet<>();
     getUniquePaths(filePath).forEach(usedPaths::add);
     getUsedPaths(usedPaths, dirPath, filePattern);
     usedPaths.forEach(System.out::println);
   }
 
-  private void getUnusedPaths(Set<String> paths, String baseDirPath, String filePattern) throws IOException {
+    /**
+     * Removes paths that are found in files matching the pattern.
+     * @param paths the set of paths to check
+     * @param baseDirPath the base directory to search
+     * @param filePattern the file pattern to match
+     * @throws IOException if an I/O error occurs
+     */
+    private void getUnusedPaths(Set<String> paths, String baseDirPath, String filePattern) throws IOException {
     try (Stream<Path> walk = Files.walk(Paths.get(baseDirPath))) {
       List<String> result = walk.map(x -> x.toString()).filter(f -> f.endsWith(filePattern)).collect(Collectors.toList());
       result.forEach(s -> {
@@ -54,7 +83,14 @@ public class JsonPathUtils {
     }
   }
 
-  private void getUsedPaths(Set<String> paths, String baseDirPath, String filePattern) throws IOException {
+    /**
+     * Finds paths that are used in files matching the pattern.
+     * @param paths the set of paths to check
+     * @param baseDirPath the base directory to search
+     * @param filePattern the file pattern to match
+     * @throws IOException if an I/O error occurs
+     */
+    private void getUsedPaths(Set<String> paths, String baseDirPath, String filePattern) throws IOException {
     try (Stream<Path> walk = Files.walk(Paths.get(baseDirPath))) {
       Set<String> usedPaths = new HashSet<>();
       List<String> result = walk.map(x -> x.toString()).filter(f -> f.endsWith(filePattern)).collect(Collectors.toList());
@@ -75,17 +111,35 @@ public class JsonPathUtils {
     }
   }
 
-  private void getUsedPaths(Set<String> paths, String fileName, Set<String> usedPaths) throws IOException {
+    /**
+     * Extracts used paths from a file.
+     * @param paths the set of paths to check
+     * @param fileName the file to search
+     * @param usedPaths the set to collect used paths
+     * @throws IOException if an I/O error occurs
+     */
+    private void getUsedPaths(Set<String> paths, String fileName, Set<String> usedPaths) throws IOException {
     Stream<String> lines = Files.lines(Paths.get(fileName));
     lines.forEach(s -> checkLine(paths, s, usedPaths));
   }
 
-  private void removeUnused(Set<String> paths, String fileName) throws IOException {
+    /**
+     * Removes used paths from the set.
+     * @param paths the set of paths to filter
+     * @param fileName the file to search
+     * @throws IOException if an I/O error occurs
+     */
+    private void removeUnused(Set<String> paths, String fileName) throws IOException {
     Stream<String> lines = Files.lines(Paths.get(fileName));
     lines.forEach(s -> checkLine(paths, s));
   }
 
-  private void checkLine(Set<String> paths, String line) {
+    /**
+     * Removes paths found in a line from the set.
+     * @param paths the set of paths to filter
+     * @param line the line to search
+     */
+    private void checkLine(Set<String> paths, String line) {
     matcher.reset(line);
     while (matcher.find()) {
       String path = line.substring(matcher.start(), matcher.end());
@@ -96,7 +150,13 @@ public class JsonPathUtils {
     }
   }
 
-  private void checkLine(Set<String> paths, String line, Set<String> usedPaths) {
+    /**
+     * Adds paths found in a line to the usedPaths set.
+     * @param paths the set of paths to check
+     * @param line the line to search
+     * @param usedPaths the set to collect used paths
+     */
+    private void checkLine(Set<String> paths, String line, Set<String> usedPaths) {
     matcher.reset(line);
     while (matcher.find()) {
       String path = line.substring(matcher.start(), matcher.end());
@@ -107,7 +167,13 @@ public class JsonPathUtils {
     }
   }
 
-  public List<String> flattenPaths(String filePath) throws IOException {
+    /**
+     * Flattens a JSON document to a list of paths.
+     * @param filePath the path to the JSON file
+     * @return a list of all paths in the document
+     * @throws IOException if the file cannot be read
+     */
+    public List<String> flattenPaths(String filePath) throws IOException {
     List<String> list = new LinkedList<>();
     InputStream is = new BufferedInputStream(new FileInputStream(filePath));
     String json = StringUtils.getStringFromStream(is);
@@ -115,7 +181,13 @@ public class JsonPathUtils {
     return d.flatten();
   }
 
-  public List<PathValue> flattenPathsWithValues(String filePath) throws IOException {
+    /**
+     * Flattens a JSON document to a list of paths with their values.
+     * @param filePath the path to the JSON file
+     * @return a list of path-value pairs
+     * @throws IOException if the file cannot be read
+     */
+    public List<PathValue> flattenPathsWithValues(String filePath) throws IOException {
     List<String> list = new LinkedList<>();
     InputStream is = new BufferedInputStream(new FileInputStream(filePath));
     String json = StringUtils.getStringFromStream(is);
@@ -124,17 +196,34 @@ public class JsonPathUtils {
     return pathValues;
   }
 
-  public List<String> getUniquePaths(String filePath) throws IOException {
+    /**
+     * Gets unique paths from a JSON document (generalizing array indexes).
+     * @param filePath the path to the JSON file
+     * @return a list of unique paths
+     * @throws IOException if the file cannot be read
+     */
+    public List<String> getUniquePaths(String filePath) throws IOException {
     List<String> list = flattenPaths(filePath);
     return getUniquePaths(list);
   }
 
-  public List<String> getUniquePaths(Document d) throws IOException {
+    /**
+     * Gets unique paths from a document.
+     * @param d the document to process
+     * @return a list of unique paths
+     * @throws IOException if an error occurs
+     */
+    public List<String> getUniquePaths(Document d) throws IOException {
     List<String> list = d.flatten();
     return getUniquePaths(list);
   }
 
-  private List<String> getUniquePaths(List<String> flattenedPaths) {
+    /**
+     * Deduplicates paths by replacing numeric array indexes with empty brackets.
+     * @param flattenedPaths the list of paths with numeric indexes
+     * @return a list of unique paths
+     */
+    private List<String> getUniquePaths(List<String> flattenedPaths) {
     Map<String, String> map = new HashMap<>();
 
     for (String s : flattenedPaths) {
@@ -151,7 +240,12 @@ public class JsonPathUtils {
     return list;
   }
 
-  public static List<String> getZeroPaddedIndexes(List<String> paths) {
+    /**
+     * Pads array indexes in paths with leading zeros to a width of 6 digits.
+     * @param paths the list of paths with numeric indexes
+     * @return a list of paths with zero-padded indexes
+     */
+    public static List<String> getZeroPaddedIndexes(List<String> paths) {
     // this method takes a list of paths where the indexes are numeric or empty and pads
     // each index with zeros upto a total width of 6. This means that the delete
     // feature during merge will work as long as there are not more than 999,999
@@ -192,7 +286,12 @@ public class JsonPathUtils {
     return newPaths;
   }
 
-  public static List<String> getNoPaddedIndexes(List<String> paths) {
+    /**
+     * Removes zero-padding from array indexes in paths.
+     * @param paths the list of paths with zero-padded indexes
+     * @return a list of paths with numeric indexes (unpadded)
+     */
+    public static List<String> getNoPaddedIndexes(List<String> paths) {
     // this method takes a list of paths where the indexes are padded with
     // zeroes. It removes the zeros and returns the list of paths
     // it preserves the order in which the paths are stored

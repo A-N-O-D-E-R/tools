@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 
 /**
  * A wrapper around BlockingQueue that blocks on offer operations.
+ * @param <T> the type of elements in the queue
  */
 public class BlockOnOfferQueue<T> implements BlockingQueue<T> {
 

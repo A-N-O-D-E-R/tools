@@ -9,6 +9,8 @@ import java.util.Optional;
 
 /**
  * Generic repository interface for data access operations.
+ * @param <T> the type of entity managed by this repository
+ * @param <ID> the type of the entity's identifier
  */
 public interface CommonRepository<T,ID extends Serializable> {
 

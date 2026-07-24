@@ -21,46 +21,94 @@ import org.apache.maven.cli.MavenCli;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+/**
+ * Wrapper class for executing Maven build commands programmatically.
+ */
 public class Maven {
-   
-    private PrintStream  stdout;
-    private PrintStream  stderr;
+
+    /**
+     * The standard output stream for Maven output.
+     */
+    private PrintStream stdout;
+
+    /**
+     * The standard error stream for Maven output.
+     */
+    private PrintStream stderr;
+
+    /**
+     * The Maven CLI instance.
+     */
     private MavenCli cli;
+
+    /**
+     * Maven settings data for configuration.
+     */
     private String[][] settingData;
 
-    public Maven(){
+    /**
+     * Constructs a Maven wrapper with default output streams.
+     */
+    public Maven() {
         cli = new MavenCli();
-        stdout=System.out;
-        stderr=System.err;
+        stdout = System.out;
+        stderr = System.err;
     }
 
-    public Maven(String[][] settingData){
+    /**
+     * Constructs a Maven wrapper with default output streams and settings data.
+     * @param settingData the Maven settings data
+     */
+    public Maven(String[][] settingData) {
         cli = new MavenCli();
-        stdout=System.out;
-        stderr=System.err;
-        this.settingData=settingData;
+        stdout = System.out;
+        stderr = System.err;
+        this.settingData = settingData;
     }
 
-    public static Maven create(PrintStream stdout, PrintStream stderr, String[][] settingData){
-        return new Maven(stdout,stderr,settingData);
+    /**
+     * Factory method to create a Maven wrapper with custom output streams and settings.
+     * @param stdout the output stream for standard output
+     * @param stderr the output stream for error output
+     * @param settingData the Maven settings data
+     * @return a new Maven instance
+     */
+    public static Maven create(PrintStream stdout, PrintStream stderr, String[][] settingData) {
+        return new Maven(stdout, stderr, settingData);
     }
 
-    public Maven(PrintStream stdout, PrintStream stderr){
+    /**
+     * Constructs a Maven wrapper with custom output streams.
+     * @param stdout the output stream for standard output
+     * @param stderr the output stream for error output
+     */
+    public Maven(PrintStream stdout, PrintStream stderr) {
         cli = new MavenCli();
-        this.stdout=stdout;
-        this.stderr=stderr;
+        this.stdout = stdout;
+        this.stderr = stderr;
     }
 
-    public Maven(PrintStream stdout, PrintStream stderr, String[][] settingData){
+    /**
+     * Constructs a Maven wrapper with custom output streams and settings data.
+     * @param stdout the output stream for standard output
+     * @param stderr the output stream for error output
+     * @param settingData the Maven settings data
+     */
+    public Maven(PrintStream stdout, PrintStream stderr, String[][] settingData) {
         cli = new MavenCli();
-        this.stdout=stdout;
-        this.stderr=stderr;
-        this.settingData=settingData;
+        this.stdout = stdout;
+        this.stderr = stderr;
+        this.settingData = settingData;
     }
     
     
-        // Assuming cli and stdout/stderr are defined elsewhere in your class
-        private int run(Path pom, String... args) {
+    /**
+     * Runs a Maven command with the given POM and arguments.
+     * @param pom the path to the pom.xml file
+     * @param args the Maven command-line arguments
+     * @return the exit code from Maven (0 for success)
+     */
+    private int run(Path pom, String... args) {
             String salt = UUID.randomUUID().toString();
             try {
                 // Create the necessary directories for the new path
@@ -93,7 +141,11 @@ public class Maven {
 
     
 
-    public void installSingle(Path pom){
+    /**
+     * Installs a single module artifact.
+     * @param pom the path to the pom.xml file
+     */
+    public void installSingle(Path pom) {
         Path tmpDir = Path.of(System.getProperty("java.io.tmpdir"));
         patchInssue(tmpDir);
         log.info(pom.getFileName().toString());
@@ -117,7 +169,11 @@ public class Maven {
         
     }
 
-    public void patchInssue(Path folder){
+    /**
+     * Creates required directory structure for Maven execution.
+     * @param folder the base folder to create directories in
+     */
+    public void patchInssue(Path folder) {
         //this is an horible hack but the parent of controler is broken
         try {
             Files.createDirectories(folder.resolve("lib/extern"));
@@ -129,6 +185,11 @@ public class Maven {
         }
     }
 
+    /**
+     * Copies Maven dependencies to a specified output folder.
+     * @param pom the path to the pom.xml file
+     * @param outputFolder the destination folder for dependencies
+     */
     public void copyDependenciesIntoFolder(Path pom, Path outputFolder) {
         Path tmpDir = Path.of(System.getProperty("java.io.tmpdir"));
         Path tempFile = tmpDir.resolve(pom.getFileName().toString());
@@ -149,7 +210,13 @@ public class Maven {
     }
 
 
-    public Set<String> getClassPath(Path pom) throws IOException{
+    /**
+     * Gets the classpath for a Maven project.
+     * @param pom the path to the pom.xml file
+     * @return a set of classpath entries
+     * @throws IOException if the POM cannot be read or Maven fails
+     */
+    public Set<String> getClassPath(Path pom) throws IOException {
         Path tmpDir = Path.of(System.getProperty("java.io.tmpdir"));
         Path tempPom = tmpDir.resolve(pom.getFileName().toString());
         Path tempFile = tmpDir.resolve(pom.getFileName().toString()+".classpath");

@@ -12,45 +12,103 @@ package com.anode.tool.commands.ssh;
 
 import com.anode.tool.commands.ssh.SshCommand.SshCommandType;
 
+/**
+ * Abstract base class for SSH command arguments.
+ */
 public abstract class SshArgs {
 
-  private static final int DEFAULT_SESSION_TIMEOUT = 5*1000;
+    /**
+     * Default session timeout in milliseconds (5 seconds).
+     */
+    private static final int DEFAULT_SESSION_TIMEOUT = 5 * 1000;
 
-  private String userName;
-  private String userPassword;
-  private String remoteHostName;
-  private int sessionTimeout = DEFAULT_SESSION_TIMEOUT;
+    /**
+     * The SSH username.
+     */
+    private String userName;
 
-  public String getUserName() {
-    return userName;
-  }
+    /**
+     * The SSH user password.
+     */
+    private String userPassword;
 
-  public void setUserName(String userName) {
-    this.userName = userName;
-  }
+    /**
+     * The remote host name or IP address.
+     */
+    private String remoteHostName;
 
-  public String getUserPassword() {
-    return userPassword;
-  }
+    /**
+     * The session timeout in milliseconds.
+     */
+    private int sessionTimeout = DEFAULT_SESSION_TIMEOUT;
 
-  public void setUserPassword(String userPassword) {
-    this.userPassword = userPassword;
-  }
+    /**
+     * Gets the SSH username.
+     * @return the username
+     */
+    public String getUserName() {
+        return userName;
+    }
 
-  public String getRemoteHostName() {
-    return remoteHostName;
-  }
+    /**
+     * Sets the SSH username.
+     * @param userName the username to set
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-  public void setRemoteHostName(String remoteHostName) {
-    this.remoteHostName = remoteHostName;
-  }
+    /**
+     * Gets the SSH user password.
+     * @return the password
+     */
+    public String getUserPassword() {
+        return userPassword;
+    }
 
-  public int getSessionTimeout() {
-    return sessionTimeout;
-  }
-  public void setSessionTimeout(int sessionTimeout) {
-    this.sessionTimeout = sessionTimeout;
-  }
+    /**
+     * Sets the SSH user password.
+     * @param userPassword the password to set
+     */
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
 
-  abstract SshCommandType getSshCommandType();
+    /**
+     * Gets the remote host name.
+     * @return the remote host name
+     */
+    public String getRemoteHostName() {
+        return remoteHostName;
+    }
+
+    /**
+     * Sets the remote host name.
+     * @param remoteHostName the remote host name to set
+     */
+    public void setRemoteHostName(String remoteHostName) {
+        this.remoteHostName = remoteHostName;
+    }
+
+    /**
+     * Gets the session timeout in milliseconds.
+     * @return the session timeout
+     */
+    public int getSessionTimeout() {
+        return sessionTimeout;
+    }
+
+    /**
+     * Sets the session timeout in milliseconds.
+     * @param sessionTimeout the timeout to set
+     */
+    public void setSessionTimeout(int sessionTimeout) {
+        this.sessionTimeout = sessionTimeout;
+    }
+
+    /**
+     * Gets the SSH command type for this arguments set.
+     * @return the SSH command type
+     */
+    abstract SshCommandType getSshCommandType();
 }

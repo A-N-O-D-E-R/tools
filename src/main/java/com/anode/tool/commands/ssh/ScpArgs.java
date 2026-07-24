@@ -14,38 +14,80 @@ import java.io.File;
 
 import com.anode.tool.commands.ssh.SshCommand.SshCommandType;
 
-/** Scp command parameters */
+/**
+ * Arguments for SCP (Secure Copy) command execution.
+ */
 public class ScpArgs extends SshArgs {
-  private File sourceFile;
-  private String destFileName;
-  private boolean reverse=false;
 
-  public File getSourceFile() {
-    return sourceFile;
-  }
+    /**
+     * The source file to copy.
+     */
+    private File sourceFile;
 
-  public void setSourceFile(File sourceFile) {
-    this.sourceFile = sourceFile;
-  }
+    /**
+     * The destination file name or path.
+     */
+    private String destFileName;
 
-  public String getDestFileName() {
-    return destFileName;
-  }
+    /**
+     * Whether this is a fetch operation (reverse copy).
+     */
+    private boolean reverse = false;
 
-  public void setDestFileName(String destFileName) {
-    this.destFileName = destFileName;
-  }
+    /**
+     * Gets the source file.
+     * @return the source file
+     */
+    public File getSourceFile() {
+        return sourceFile;
+    }
 
-  public boolean getFetching() {
-    return this.reverse;
-  }
+    /**
+     * Sets the source file.
+     * @param sourceFile the source file to set
+     */
+    public void setSourceFile(File sourceFile) {
+        this.sourceFile = sourceFile;
+    }
 
-  public void setFetching(boolean fetch) {
-    this.reverse = fetch;
-  }
+    /**
+     * Gets the destination file name.
+     * @return the destination file name
+     */
+    public String getDestFileName() {
+        return destFileName;
+    }
 
-  @Override
-  SshCommandType getSshCommandType() {
-    return SshCommandType.SCP;
-  }
+    /**
+     * Sets the destination file name.
+     * @param destFileName the destination file name to set
+     */
+    public void setDestFileName(String destFileName) {
+        this.destFileName = destFileName;
+    }
+
+    /**
+     * Checks if this is a fetch operation.
+     * @return true if fetching from remote
+     */
+    public boolean getFetching() {
+        return this.reverse;
+    }
+
+    /**
+     * Sets whether this is a fetch operation.
+     * @param fetch true for fetch (reverse), false for push
+     */
+    public void setFetching(boolean fetch) {
+        this.reverse = fetch;
+    }
+
+    /**
+     * Gets the SSH command type.
+     * @return SCP command type
+     */
+    @Override
+    SshCommandType getSshCommandType() {
+        return SshCommandType.SCP;
+    }
 }

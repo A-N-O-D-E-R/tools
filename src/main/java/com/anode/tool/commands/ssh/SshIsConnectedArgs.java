@@ -12,10 +12,17 @@ package com.anode.tool.commands.ssh;
 
 import com.anode.tool.commands.ssh.SshCommand.SshCommandType;
 
-/** Ssh command parameters */
+/**
+ * Arguments for checking SSH connection status.
+ */
 public class SshIsConnectedArgs extends SshArgs {
-  @Override
-  SshCommandType getSshCommandType() {
-    return null;
-  }
+
+    /**
+     * Gets the SSH command type.
+     * @return null (not a standard SSH command)
+     */
+    @Override
+    SshCommandType getSshCommandType() {
+        return null;
+    }
 }

@@ -7,15 +7,28 @@ import com.anode.tool.StringUtils;
 
 
 
+/**
+ * Parser for converting path strings into token sequences.
+ */
 class Parser {
 
-  public static List<Token> getTokens(String path) {
+    /**
+     * Parses a path string into a list of tokens.
+     * @param path the path string to parse
+     * @return a list of tokens representing the path
+     */
+    public static List<Token> getTokens(String path) {
     List<String> strTokens = getStringTokens(path);
     List<Token> tokens = getTokens(strTokens);
     return tokens;
   }
 
-  private static List<Token> getTokens(List<String> strTokens) {
+    /**
+     * Converts a list of string tokens to Token objects.
+     * @param strTokens the string tokens to convert
+     * @return a list of Token objects
+     */
+    private static List<Token> getTokens(List<String> strTokens) {
     List<Token> tokens = new ArrayList<>();
     int size = strTokens.size();
 
@@ -40,7 +53,14 @@ class Parser {
     return tokens;
   }
 
-  private static ArrayToken getArrayToken(String s, int first, boolean isLeaf) {
+    /**
+     * Parses an array token from a string.
+     * @param s the string to parse
+     * @param first the index of the first bracket
+     * @param isLeaf whether this token is a leaf node
+     * @return the parsed ArrayToken
+     */
+    private static ArrayToken getArrayToken(String s, int first, boolean isLeaf) {
     ArrayToken at = null;
     String name = StringUtils.removeEscapeChars(s.substring(0, first), '\\', '.', '[', ']', '=');
 
@@ -73,8 +93,13 @@ class Parser {
     return at;
   }
 
-  private static int isPresent(String s, char symbol) {
-    // return -1 means not present else present
+    /**
+     * Checks if a symbol is present in a string (ignoring escaped symbols).
+     * @param s the string to search
+     * @param symbol the symbol to find
+     * @return the index of the symbol, or -1 if not found
+     */
+    private static int isPresent(String s, char symbol) {
     int pos = -1;
 
     int start = 0;
@@ -100,7 +125,12 @@ class Parser {
     return pos;
   }
 
-  private static List<String> getStringTokens(String s) {
+    /**
+     * Splits a path string into string tokens.
+     * @param s the path string to split
+     * @return a list of string tokens
+     */
+    private static List<String> getStringTokens(String s) {
     List<String> paths = new ArrayList<>();
     int from = 2;
 
@@ -121,7 +151,14 @@ class Parser {
     return paths;
   }
 
-  private static boolean isEscaped(String s, int pos, char ec) {
+    /**
+     * Checks if a character at a position is escaped.
+     * @param s the string to check
+     * @param pos the position to check
+     * @param ec the escape character
+     * @return true if the character is escaped
+     */
+    private static boolean isEscaped(String s, int pos, char ec) {
     if (pos == 0) {
       return false;
     }

@@ -32,21 +32,34 @@ public class CommandLinePrint {
 			print(printer, new File(args[2]));
 	}
 
-	private static void print(TLP3842 printer, File instructionFile) throws PrintServicesException, IOException {
+    /**
+     * Prints bar codes from an instruction file.
+     * @param printer the printer to use
+     * @param instructionFile the file containing bar code instructions
+     * @throws PrintServicesException if printing fails
+     * @throws IOException if the file cannot be read
+     */
+    private static void print(TLP3842 printer, File instructionFile) throws PrintServicesException, IOException {
 
-		List<String> labels = new LinkedList<String>();
+        List<String> labels = new LinkedList<String>();
 
-		String date = new SimpleDateFormat("ddMMyy").format(new Date());
+        String date = new SimpleDateFormat("ddMMyy").format(new Date());
 
-		printer.reset();
+        printer.reset();
 
-		for (String line : getLines(instructionFile))
-			labels.add(line.replace("?date?", date));
+        for (String line : getLines(instructionFile))
+            labels.add(line.replace("?date?", date));
 
-		printer.printBarCode(labels, 1, false);
-	}
+        printer.printBarCode(labels, 1, false);
+    }
 
-	private static List<String> getLines(File file) throws IOException {
+    /**
+     * Reads lines from a file, skipping comments and empty lines.
+     * @param file the file to read
+     * @return a list of non-empty, non-comment lines
+     * @throws IOException if the file cannot be read
+     */
+    private static List<String> getLines(File file) throws IOException {
 		BufferedReader reader = new BufferedReader(new FileReader(file));
 
 		List<String> lines = new LinkedList<String>();

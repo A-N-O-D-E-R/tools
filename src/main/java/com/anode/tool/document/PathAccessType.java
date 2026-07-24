@@ -1,10 +1,17 @@
-
-
 package com.anode.tool.document;
 
-enum PathAccessType {
+/**
+ * Enumeration of path access types for document navigation.
+ */
+public enum PathAccessType {
+    /**
+     * Access to a primitive value.
+     */
+    VALUE,
 
-  VALUE, OBJECT;
-
+    /**
+     * Access to an object.
+     */
+    OBJECT;
 }
 

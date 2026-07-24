@@ -15,6 +15,9 @@ public interface BarCodePrinter extends Printer {
 	 */
 	void printBarCode(List<String> barCodeList, int copies, boolean blockCopies) throws PrintServicesException;
 
-	/** Calibrate the printer. */
-	void calibrate() throws PrintServicesException;
+    /**
+     * Calibrates the printer.
+     * @throws PrintServicesException if calibration fails
+     */
+    void calibrate() throws PrintServicesException;
 }

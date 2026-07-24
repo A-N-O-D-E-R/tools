@@ -43,10 +43,15 @@ public abstract class AbstractPrinter implements Printer {
 		return port;
 	}
 
-	public abstract void reset() throws PrintServicesException ;
-	
 	/**
-	 * @see java.lang.Object#toString()
+	 * Resets the printer to its initial state.
+	 * @throws PrintServicesException if the reset operation fails
+	 */
+	public abstract void reset() throws PrintServicesException;
+
+	/**
+	 * Returns a string representation of this printer.
+	 * @return the printer name
 	 */
 	public String toString() {
 		return getName() ;

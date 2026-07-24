@@ -2,12 +2,15 @@ package com.anode.tool.event;
 
 import java.io.Serializable;
 
+/**
+ * Interface for filtering events before delivery to listeners.
+ */
 public interface EventListenerFilter extends Serializable {
 
     /**
-     * @param event
-     * @return vrai Si l'evevenement doit etre envoye au listener ayant declare
-     *         ce filtre
+     * Determines whether an event should be delivered to a listener.
+     * @param event the event to check
+     * @return true if the event should be delivered to the listener, false otherwise
      */
     public boolean isEventEnabled(Event event);
 }

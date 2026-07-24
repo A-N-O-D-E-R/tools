@@ -1,13 +1,26 @@
-
-
 package com.anode.tool.document;
 
-/*
- * @author Deepak Arora
+/**
+ * Enumeration representing the difference result when comparing paths in documents.
  */
 public enum PathDiffResult {
-  EQUAL,
-  DIFFERENT,
-  ONLY_IN_LEFT,
-  ONLY_IN_RIGHT
+    /**
+     * Paths are equal.
+     */
+    EQUAL,
+
+    /**
+     * Paths exist in both documents but have different values.
+     */
+    DIFFERENT,
+
+    /**
+     * Path exists only in the left document.
+     */
+    ONLY_IN_LEFT,
+
+    /**
+     * Path exists only in the right document.
+     */
+    ONLY_IN_RIGHT
 }

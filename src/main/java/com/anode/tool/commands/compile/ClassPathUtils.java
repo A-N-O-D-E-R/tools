@@ -81,9 +81,15 @@ public class ClassPathUtils {
     }
 
 
-    private static boolean checkIfClassHaveAtLeastOneAnnotation(Class clazz,Set<Class> annotedClassType){
+    /**
+     * Checks if a class has at least one of the specified annotations.
+     * @param clazz the class to check
+     * @param annotedClassType the set of annotation classes to look for
+     * @return true if the class has at least one of the specified annotations
+     */
+    private static boolean checkIfClassHaveAtLeastOneAnnotation(Class clazz, Set<Class> annotedClassType) {
         boolean result = false;
-        for(Class annotation : annotedClassType){
+        for (Class annotation : annotedClassType) {
             result = result || (clazz.getAnnotation(annotation) != null);
         }
         return result;
@@ -130,6 +136,13 @@ public class ClassPathUtils {
         return constructor.newInstance(parameters);
     }
     
+    /**
+     * Finds a constructor matching the given parameter types.
+     * @param connectorClass the class to find a constructor for
+     * @param parametersTypes the parameter types to match
+     * @return the matching constructor
+     * @throws RuntimeException if no matching constructor is found
+     */
     private static java.lang.reflect.Constructor findMatchingConstructor(Class connectorClass, Class[] parametersTypes) {
         int parameterTypesLength = parametersTypes.length;
         Class composantReseauUsageClass = parametersTypes[0] ;

@@ -4,27 +4,36 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.Date;
 
+/**
+ * Interface for managing events, extending EventProducer with notification
+ * and archive retrieval capabilities.
+ */
 public interface EventManager extends EventProducer {
-	
-	public void notify(Event event) ;
-	
+
     /**
-     * @param from une borne de depart de date d'archive inclue dans la recherche, ou nulle pour toutes les dates disponibles
-	 * @param host l'adresse ip du demandeur
-	 * @param port le port sur lequel ecrire
-     * @throws IOException 
-     * @throws UnknownHostException 
+     * Notifies all listeners of an event.
+     * @param event the event to notify listeners about
      */
-    public void sendArchiveEventTo(Date from, String host, int port) throws UnknownHostException, IOException ;
-    
+    public void notify(Event event);
+
     /**
-     * @param from une borne de depart de date d'archive inclue dans la recherche, ou nulle pour toutes les dates disponibles
-	 * @param host l'adresse ip du demandeur
-	 * @param port le port sur lequel ecrire
-     * @throws IOException 
-     * @throws UnknownHostException 
+     * Sends archived events from a starting date to a remote host.
+     * @param from the starting date (inclusive) for events to retrieve, or null for all events
+     * @param host the IP address of the requesting host
+     * @param port the port to write to
+     * @throws UnknownHostException if the host cannot be resolved
+     * @throws IOException if an I/O error occurs during transmission
      */
-    public void sendProtocoleArchiveEventTo(Date from, String host, int port) throws UnknownHostException, IOException ;
-       
-       
+    public void sendArchiveEventTo(Date from, String host, int port) throws UnknownHostException, IOException;
+
+    /**
+     * Sends archived events in protocol format from a starting date to a remote host.
+     * @param from the starting date (inclusive) for events to retrieve, or null for all events
+     * @param host the IP address of the requesting host
+     * @param port the port to write to
+     * @throws UnknownHostException if the host cannot be resolved
+     * @throws IOException if an I/O error occurs during transmission
+     */
+    public void sendProtocoleArchiveEventTo(Date from, String host, int port) throws UnknownHostException, IOException;
+
 }

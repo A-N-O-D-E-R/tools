@@ -14,36 +14,80 @@ import java.io.OutputStream;
 
 import com.anode.tool.commands.ssh.SshCommand.SshCommandType;
 
-/** Ssh command parameters */
+/**
+ * Arguments for SSH command execution on a remote host.
+ */
 public class SshCmdArgs extends SshArgs {
-  private String command;
-  private OutputStream outputStream;
-  private OutputStream errorStream;
 
-  public String getCommand() {
-    return command;
-  }
+    /**
+     * The command to execute on the remote host.
+     */
+    private String command;
 
-  public void setCommand(String command) {
-    this.command = command;
-  }
+    /**
+     * The output stream for command stdout.
+     */
+    private OutputStream outputStream;
 
-  public OutputStream getOutputStream() {
-    return outputStream;
-  }
-  public void setOutputStream(OutputStream outputStream) {
-    this.outputStream = outputStream;
-  }
+    /**
+     * The output stream for command stderr.
+     */
+    private OutputStream errorStream;
 
-  public OutputStream getErrorStream() {
-    return errorStream;
-  }
-  public void setErrorStream(OutputStream errorStream) {
-    this.errorStream = errorStream;
-  }
+    /**
+     * Gets the command to execute.
+     * @return the command string
+     */
+    public String getCommand() {
+        return command;
+    }
 
-  @Override
-  SshCommandType getSshCommandType() {
-    return SshCommandType.EXEC_REMOTE_COMMAND;
-  }
+    /**
+     * Sets the command to execute.
+     * @param command the command to set
+     */
+    public void setCommand(String command) {
+        this.command = command;
+    }
+
+    /**
+     * Gets the output stream for stdout.
+     * @return the output stream
+     */
+    public OutputStream getOutputStream() {
+        return outputStream;
+    }
+
+    /**
+     * Sets the output stream for stdout.
+     * @param outputStream the output stream to set
+     */
+    public void setOutputStream(OutputStream outputStream) {
+        this.outputStream = outputStream;
+    }
+
+    /**
+     * Gets the output stream for stderr.
+     * @return the error output stream
+     */
+    public OutputStream getErrorStream() {
+        return errorStream;
+    }
+
+    /**
+     * Sets the output stream for stderr.
+     * @param errorStream the error stream to set
+     */
+    public void setErrorStream(OutputStream errorStream) {
+        this.errorStream = errorStream;
+    }
+
+    /**
+     * Gets the SSH command type.
+     * @return the command execution type
+     */
+    @Override
+    SshCommandType getSshCommandType() {
+        return SshCommandType.EXEC_REMOTE_COMMAND;
+    }
 }
